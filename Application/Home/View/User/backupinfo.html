@@ -1,0 +1,98 @@
+<extend name="Public:parent" />
+<block name="title">
+	个人信息
+</block>
+<block name="content">
+    <div class="men">
+	    <div class="container">
+		    <div class="col-md-11 register">
+                <div class="col-md-12" style="border-bottom:3px solid #e05b5b;text-align:center;height:100px;">
+                   <h3 class="text-success">个人信息</h3> 
+                </div>
+                <div class="col-md-2" style="float:left">
+
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/Info">个人信息</a>
+                    </div>
+                     <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/changePwd">更改密码</a>
+                   </div>
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/setQues">安全中心</a> 
+                    </div>
+                      <div style="margin-top:40px">
+                       <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/changeInfo">更改信息</a> 
+                   </div>
+                   
+                </div>
+                <div class="col-md-10" style="border-left:3px solid #e05b5b;float:left;padding:30px;">                        
+                        <form class="form-horizontal" role="form"> 
+                           
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">头像:</label>
+                                    <div class="col-xs-6">
+                                        <img class="img" style="width:200px" src="__PUBLIC__/Home/upload/{$_SESSION['user']['profile']}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">用户名:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['username']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">昵称:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['nickname']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">邮箱:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['email']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">手机号:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['tel']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">性别:</label>
+                                    <div class="col-xs-6" style="margin-top:5px;">
+                                        <switch name="_SESSION['user']['sex']">
+                                            <case value="1" break="1"> <label class="col-md-3 control-label">男</label></case>
+                                            <case value="0" break="1"> <label class="col-md-3 control-label">女</label></case>
+                                            <case value="2" break="1"> <label class="col-md-3 control-label">未输入</label></case>
+                                        </switch>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">地址:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['school']}</label>
+                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">个性签名:</label>
+                                    <div class="col-xs-6">
+                                         <label class="col-md-3 control-label">{$_SESSION['user']['sign']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">个人简介:</label>
+                                    <div class="col-md-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['info']}</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="clearfix"> </div>
+                                
+                            </div>
+                        </form>
+                </div>
+			</div>
+		</div>
+    </div>
+</block>

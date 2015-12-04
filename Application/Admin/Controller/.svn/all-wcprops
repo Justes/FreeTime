@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/godluck/!svn/ver/236/Application/Admin/Controller
+END
+AuthController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/godluck/!svn/ver/190/Application/Admin/Controller/AuthController.class.php
+END
+CommentController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/godluck/!svn/ver/236/Application/Admin/Controller/CommentController.class.php
+END
+RecycleController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/godluck/!svn/ver/236/Application/Admin/Controller/RecycleController.class.php
+END
+WebManageController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/godluck/!svn/ver/255/Application/Admin/Controller/WebManageController.class.php
+END
+IndexController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/godluck/!svn/ver/126/Application/Admin/Controller/IndexController.class.php
+END
+AdminController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/godluck/!svn/ver/167/Application/Admin/Controller/AdminController.class.php
+END
+LoginController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/godluck/!svn/ver/167/Application/Admin/Controller/LoginController.class.php
+END
+BlockController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/godluck/!svn/ver/116/Application/Admin/Controller/BlockController.class.php
+END
+GoodsController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/godluck/!svn/ver/236/Application/Admin/Controller/GoodsController.class.php
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/godluck/!svn/ver/1/Application/Admin/Controller/index.html
+END
+UserController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/godluck/!svn/ver/236/Application/Admin/Controller/UserController.class.php
+END
+PublicController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/godluck/!svn/ver/236/Application/Admin/Controller/PublicController.class.php
+END
+TestController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/godluck/!svn/ver/190/Application/Admin/Controller/TestController.class.php
+END

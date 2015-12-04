@@ -1,0 +1,75 @@
+<?php
+	/**
+	 *		author : exp
+	 *		email  : root@evilexp.me
+	 */
+namespace Home\Controller;
+use Think\Controller;
+class IndexController extends Controller {
+    public function index(){
+
+        $goodsTypeTable = M('type');
+<<<<<<< .mine
+=======
+        $goodsPicTable = M('goodspic');
+>>>>>>> .r94
+
+<<<<<<< .mine
+        //获取最上层的分类
+        $goodsType = $goodsTypeTable ->where('parentId=0') -> field('id,typeName,status,parentId') -> select();
+=======
+        $goodsPic = $goodsPicTable -> field('goodsId,goodsPic')-> select();
+        foreach ($goodsPic as $k=>$v) {
+            $goodsPicc[$v['goodsId']] = $v['goodsPic'];
+        }
+>>>>>>> .r94
+<<<<<<< .mine
+
+=======
+        $goodsType = $goodsTypeTable -> field('id,typeName,status,parentId') -> select();
+>>>>>>> .r94
+
+<<<<<<< .mine
+=======
+        $goods = $goodsTable -> field('goodsId,goodsName,typePath,price,status') -> order('rand()') -> limit(4) -> select();
+        foreach ($goods as $key=>$value) {
+            $goods[$key]['ptype'] = explode('-',$value['typePath'])[1];
+        }
+        dump($goods);exit;
+
+        $this -> assign('goodsPic',$goodsPicc);
+        $this -> assign('goods',$goods);
+>>>>>>> .r94
+        $this -> assign('goodsType',$goodsType);
+        $this -> display();       
+    }
+
+<<<<<<< .mine
+    public function getGoods(){
+
+        //获取商品图片
+        $goodsPicTable = M('goodspic');
+        $goodsPic = $goodsPicTable -> field('goodsId,goodsPic')-> select();
+
+        foreach ($goodsPic as $k=>$v) {
+            $goodsPicc[$v['goodsId']] = $v['goodsPic'];
+        }
+        
+        //通过商品最上层分类id随机获取4种商品
+        $goodsTable = M('goods');
+        $string = "%0-{$_GET['pid']}%";
+        $map['typePath'] = array('LIKE',$string);
+        $map['status'] = 0;
+        $map['status'] = '0';
+
+        $data = $goodsTable -> field('goodsId,goodsName,price') -> where($map)-> order('rand()') -> limit(4) -> select();
+
+        //将商品图片放入商品信息中
+        foreach ($data as $k=>$v) {
+            $data[$k]['pic'] = $goodsPicc[$data[$k]['goodsId']];
+        }
+        $this -> ajaxReturn($data);
+    }
+=======
+>>>>>>> .r94
+}

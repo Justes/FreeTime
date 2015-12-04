@@ -1,0 +1,63 @@
+<extend name="Public:parent" />
+<block name="title">
+	我的闲置
+</block>
+<block name="content">
+	<div class="men">
+		<div class="container">
+			<foreach name="datas" item="data">
+				<div style="margin:20px;border:1px solid #ccc;height:240px;">
+					<div class="col-md-3" style="height:220px;margin:10px;">
+						<a href="__APP__/goods/index/goodsId/{$data['goodsId']}"><img width=220px height=220px src="__PUBLIC__/Home/{$data['goodsPic']}" /></a>
+					</div>
+					<div class="col-md-4" style="margin:20px 10px 10px;height:220px;font-size:14px;">
+						<div>
+							<span>标题:</span>
+							<label>{$data['goodsName']}</label>
+						</div>
+						<div>
+							<span>新旧:</span>
+							<label>{$data['old']}</label>
+						</div>
+						<div>
+							<span>价格:</span>
+							<label>{$data['price']}</label> ￥
+						</div>
+						<div>
+							<span>浏览次数:</span>
+							<label>{$data['focus']}</label> 次
+						</div>
+						<div>
+							<span>发布日期:</span>
+							<label>{$data['postTime']}</label>
+						</div>
+						<div style="word-break:break-all">
+							<span>描述:</span>
+							<p style="text-indent:2em;">
+								{$data['description']}
+							</p>
+						</div>
+					</div>
+					<if condition="$data[status] eq 1">
+						<div class="col-md-3" style="width:280px;">
+							<img src="__PUBLIC__/Home/images/selled.png" />
+							<div>
+								<label>评价:</label>{$data['comment']}
+							</div>
+						</div>
+					</if>
+					<div style="float:right;width:40px;height:110px;">
+						<a href="__APP__/goods/index/goodsId/{$data['goodsId']}"><img src="__PUBLIC__/Home/images/view.png" /></a>
+						<div style="height:2px;"></div>
+						<a href="__CONTROLLER__/post/id/{$data['goodsId']}"><img src="__PUBLIC__/Home/images/edit.png" /></a>
+						<div style="height:2px;"></div>
+						<a href="__CONTROLLER__/del/id/{$data['goodsId']}"><img src="__PUBLIC__/Home/images/trash.png" /></a>
+					</div>
+				</div>
+			</foreach>
+
+			<div class="clearfix"></div>
+			<div class="col-md-8 col-md-offset-3">{$page}</div>
+		</div>
+	</div>
+</block>

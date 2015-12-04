@@ -1,0 +1,159 @@
+<extend name="Public:parent" />
+<block name="title">
+	更改密码
+</block>
+<block name="content">
+	<div class="men">
+		<div class="container">
+			<div class="col-md-11 register">
+                 <div class="col-md-12" style="border-bottom:3px solid #e05b5b;text-align:center;height:100px;">
+                   <h3 class="text-success">个人中心</h3> 
+                </div>
+                <div class="col-md-2" style="float:left">
+
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/Info">个人信息</a>
+                    </div>
+                     <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/changePwd">更改密码</a>
+                   </div>
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/setQues">安全中心</a> 
+                   </div>
+                     <div style="margin-top:40px">
+                       <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/changeInfo">更改信息</a> 
+                   </div>
+                   
+                </div>
+                <div class="col-md-10" style="border-left:3px solid #e05b5b;float:left;padding:30px;"> 
+                        <form class="form-horizontal" role="form" method="post" action="__APP__/user/actChangePwd" enctype="multipart/form-data"> 
+                             <div class="form-group">
+                                 <div class="col-md-offset-5">
+                                     <h3 class="text-success">更改密码</h3>
+                                 </div>
+                                 <br />
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">用户名:</label>
+                                    <div class="col-xs-6">
+                                        <input class="form-control col-md-6" disabled type="text" placeholder="{$_SESSION['user']['username']}"> 
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="col-md-3 control-label">输入原密码:</label>
+                                     <span id="checkFormerPwd"></span>
+                                    <div class="col-xs-6">
+                                        <input name="formerPwd" class="form-control col-md-4" type="password" id="formerPwd">
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="col-md-3 control-label">输入新密码:</label>
+                                     <span id="newPwdTip"></span>
+                                    <div class="col-xs-6">
+                                        <input name="password" class="form-control col-md-4" type="password" id="newPwd">
+                                        
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="col-md-3 control-label">重输新密码:</label>
+                                      <span id="reNewPwdTip"></span>
+                                    <div class="col-xs-6">
+                                        <input name="rePwd" class="form-control col-md-4" type="password" id="reNewPwd">
+                                       
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-xs-6">
+                                        <input name="id" class="form-control col-md-6" type="hidden" value = "{$_SESSION['user']['id']}"> 
+                                        
+                                    <span id="checkFormerPwd"></span>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                 <div class="col-md-offset-3 col-md-10">
+                                     <button type="submit" name="submit" class="btn btn-info" value="value" id="change">确认修改</button>
+                                     <button type="reset" class="btn btn-danger">重置</button>
+                                 </div>
+                                 <div class="clearfix"> </div>
+                                 </div>
+                              </div>
+                            </form>
+                        </div>
+			   </div>
+		 </div>
+	</div>
+<script>
+    checkFormerPwd = '';
+    checkNewPwd = '';
+    newPwd = '';
+    newPwdLength = 0;
+    $("#formerPwd").blur(function(){
+       formerPwd = $("#formerPwd").val();  
+       content = $("#checkFormerPwd").html();
+       //alert(formerPwd);
+       alert(1);
+       if(formerPwd){
+               $.post("__APP__/User/ajaxPwd",{"password":formerPwd},function(data){
+                    if(data==1){
+                        $("#checkFormerPwd").html("密码正确");
+                        $("#checkFormerPwd").css("color","green");
+                        checkFormerPwd = 1;
+                    }else{
+                        $("#checkFormerPwd").html("密码错误");    
+                        $("#checkFormerPwd").css("color","red");
+                    } 
+               },"json");
+            }else{
+                    $("#checkFormerPwd").html("请输入密码");     
+                    $("#checkFormerPwd").css("color","red");
+            } 
+    }); 
+    $("#newPwd").blur(function(){
+        newPwd = $("#newPwd").val(); 
+         // alert(newPwd);
+        newPwdLength = $("#newPwd").val().length;
+        if(newPwdLength==0){
+            $("#newPwdTip").html("新密码不能为空"); 
+            $("#newPwdTip").css("color","red");
+        }else if((newPwdLength >12)||(newPwdLength <6)){
+            $("#newPwdTip").html("密码位数为六到十二位");
+            $("#newPwdTip").css("color","red");
+        }else{
+            $("#newPwdTip").html("新密码可用"); 
+            $("#newPwdTip").css("color","green");
+             checkNewPwd = 1;
+        }
+        
+    });
+     $("#reNewPwd").blur(function(){
+        //newPwd = $("#newPwd").val(); 
+        //alert(newPwdLength);
+        newPwdLength = $("#newPwd").val().length;
+        reNewPwd = $("#reNewPwd").val();
+        reNewPwdLength = $("#reNewPwd").val().length;
+        
+        if((newPwd !='')&&(newPwdLength == reNewPwdLength)){
+            $("#reNewPwdTip").html("两次密码相符");
+            $("#reNewPwdTip").css("color","green");
+            checkNewPwd = 1;
+            }else{
+                if(newPwdLength==0){
+                    $("#reNewPwdTip").html("新密码不能为空");
+                    $("#reNewPwdTip").css("color","red");
+            
+                }else{   
+                    $("#reNewPwdTip").html("两次密码不符"); 
+                    $("#reNewPwdTip").css("color","red");
+                }
+        }
+     
+    });
+    $("#change").click(function(){
+        if((checkFormerPwd==1)&&(checkNewPwd==1)){
+            return true; 
+        }else{
+            return false; 
+        } 
+    });
+</script>
+</block>

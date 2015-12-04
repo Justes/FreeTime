@@ -1,0 +1,337 @@
+<extend name="Public:parent" />
+<block name="meta">
+{:W('Meta/getMeta')}
+</block>
+<block name="content">
+<div class="index_slider">
+	<div class="container">
+	  <div class="callbacks_container">
+	      <ul class="rslides" id="slider">
+	        <li><img id="ppt1" width="1110px" height="308px" src="" class="img-responsive" alt=""/></li>
+	        <li><img id="ppt2" width="1110px" height="308px" src="" class="img-responsive" alt=""/></li>
+	        <li><img id="ppt3" width="1110px" height="308px" src="" class="img-responsive" alt=""/></li>
+	      </ul>
+	  </div>
+	</div> 
+</div>
+<div class="content_top">
+	<div class="container">
+		<div class="grid_1">
+			<div class="col-md-3">
+			 <div class="box2">
+			 	<ul class="list1">
+			 		<i class="lock"> </i>
+			 		<li class="list1_right"><p>Upto 5% Reward on your shipping</p></li>
+			 		<div class="clearfix"> </div>
+			 	</ul>
+			 </div>
+			</div>
+			<div class="col-md-3">
+			 <div class="box3">
+			 	<ul class="list1">
+			 		<i class="clock1"> </i>
+			 		<li class="list1_right"><p>Easy Extended Returned</p></li>
+			 		<div class="clearfix"> </div>
+			 	</ul>
+			 </div>
+			</div>
+			<div class="col-md-3">
+			 <div class="box4">
+			 	<ul class="list1">
+			 		<i class="vehicle"> </i>
+			 		<li class="list1_right"><p>Free Shipping on order over 99 $</p></li>
+			 		<div class="clearfix"> </div>
+			 	</ul>
+			 </div>
+			</div>
+			<div class="col-md-3">
+			 <div class="box5">
+			 	<ul class="list1">
+			 		<i class="dollar"> </i>
+			 		<li class="list1_right"><p>Delivery Schedule Spread Cheer Time</p></li>
+			 		<div class="clearfix"> </div>
+			 	</ul>
+			 </div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="column_center">
+			<h1>上闲鱼-闲置能换钱</h1>
+			<h2>闲鱼让你的闲置游起来</h2>
+			<!--<h1>1 of the most Beautiful online store </h1>
+			<h2>Clothes is one of the word'd leading E-commerce companies that designs and develops online stores</h2>
+			-->
+		</div>
+		
+	<foreach name="goodsType" item="goodsTypes">	
+			<div class="sellers_grid cate" newpath="{$goodsTypes.id}">
+				<ul class="sellers">
+					<i class="star"> </i>
+					<li class="sellers_desc"><h2>{$goodsTypes.typeName}</h2></li>
+					<div class="clearfix"></div>
+				</ul>
+			</div>
+			
+		
+		   
+			<div class="grid_2" id="htm{$goodsTypes.id}">
+			
+	
+
+				<div class="clearfix"> </div>
+			</div>
+	</foreach>
+	
+	</div>
+</div>
+<div class="content_middle">
+	<div class="container">
+		<ul class="promote">
+			<i class="promote_icon"> </i>
+			<li class="promote_head"><h3>热门推荐</h3></li>
+		</ul>
+		 <ul id="flexiselDemo3">
+						
+						
+						
+				
+						
+				     </ul>
+				    <script type="text/javascript">
+					  $(window).load(function() {
+						$("#flexiselDemo3").flexisel({
+							visibleItems: 6,
+							animationSpeed: 1000,
+							autoPlay:true,
+							autoPlaySpeed: 3000,    		
+							pauseOnHover: true,
+							enableResponsiveBreakpoints: true,
+					    	responsiveBreakpoints: { 
+					    		portrait: { 
+					    			changePoint:480,
+					    			visibleItems: 1
+					    		}, 
+					    		landscape: { 
+					    			changePoint:640,
+					    			visibleItems: 2
+					    		},
+					    		tablet: { 
+					    			changePoint:768,
+					    			visibleItems: 3
+					    		}
+					    	}
+					    });
+					    
+					});
+					var hhh = '';
+					$(window).load(function(){
+						$.get("__APP__/Index/recommendGoods",{"recommend":1},function(data){
+				
+							for(var i=0;i<data.length;i++){
+							
+								 hhh += '<li class="nbs-flexisel-item ajaxbtn"><a href="__APP__/goods/index/goodsId/'+data[i]['goodsId']+'" ><img style="width:220px;height:220px" src="__PUBLIC__/Home/'+data[i]['pic']+'"  class="img-responsive" /></a><div class="grid-flex"><h4>'+data[i]['goodsName']+'</h4><p>'+data[i]['price']+'￥</p><div class="m_3"><a href="" class="link2 addToCart" goodsId="'+data[i]['goodsId']+'">加入购物车</a></div><div class="ticket"> </div></div></li>'; 
+							
+							}
+
+							$("#flexiselDemo3").prepend(hhh);
+						});
+					});
+				   </script>
+				   <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.flexisel.js"></script>
+	</div>
+</div>
+<div class="container">
+   <div class="content_middle_bottom">
+	  <div class="col-md-4">
+		  <ul class="spinner">
+			<i class="spinner_icon"> </i>
+			<li class="spinner_head"><h3>But I must explain</h3></li>
+			<div class="clearfix"> </div>
+		  </ul>
+		  <div class="timer_box">
+			<div class="thumb"> </div>
+			<div class="timer_grid">
+ 			<ul id="countdown">
+			</ul>
+				<ul class="navigation">
+					<li>
+						<p class="timeRefDays">DAYS</p>
+					</li>
+					<li>
+						<p class="timeRefHours">HOURS</p>
+					</li>
+					<li>
+						<p class="timeRefMinutes">MINUTES</p>
+					</li>
+					<li>
+						<p class="timeRefSeconds">SECONDS</p>
+					</li>
+				</ul>
+          </div>
+          <div class="thumb_desc">
+          	<h3> totam rem aperiam</h3>
+          	<div class="price">
+			   <span class="reducedfrom">$140.00</span>
+			   <span class="actual">$120.00</span>
+			</div>
+		 </div>
+		 <a href="#"><div class="m_3 deal"><div class="link3">Buy this deal</div></div></a>
+		</div>
+		</div>
+		<div class="col-md-8">
+		  <ul class="spinner">
+			<i class="paperclip"> </i>
+			<li class="spinner_head"><h3>From the Blog</h3></li>
+			<div class="clearfix"> </div>
+		  </ul>
+		      <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t4.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t5.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t6.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t7.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+    <div class="content_bottom">
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="box_icon"> </i>
+			 <li class="spinner_head"><h3>mazim pla</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		  <img src="__PUBLIC__/Home/images/t8.jpg" class="img-responsive" alt=""/>
+    	</div>
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="bubble"> </i>
+			 <li class="spinner_head"><h3>About Us</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p>
+    	</div>
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="mail"> </i>
+			 <li class="spinner_head"><h3>Contact Us</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		 <ul class="social">
+			<li><a href=""> <i class="fb"> </i> </a></li>
+		    <li><a href=""><i class="tw"> </i> </a></li>
+			<li><a href=""><i class="google"> </i> </a></li>
+			<li><a href=""><i class="linkedin"> </i> </a></li>
+			<li><a href=""><i class="skype"> </i> </a></li>
+		</ul>
+    	</div>
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="mail"> </i>
+			 <li class="spinner_head"><h3>Contact Us</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		  <p>500 Lorem Ipsum Dolor Sit,</p>
+		  <p>22-56-2-9 Sit Amet, Lorem,</p>
+		  <p>Phone:(00) 222 666 444</p>
+		  <p><a href="mailto:info@demo.com"> info(at)gifty.com</a></p>
+    	</div>
+    	<div class="clearfix"> </div>
+    </div>
+</div>
+<SCRIPT>
+		var url = "{:U('Index/getppt')}";
+		$.get(url,"",function(data) {
+						$("#ppt1").attr("src","__PUBLIC__/Admin/"+data[0].logo);
+						$("#ppt2").attr("src","__PUBLIC__/Admin/"+data[1].logo);
+						$("#ppt3").attr("src","__PUBLIC__/Admin/"+data[2].logo);
+					});
+                   var arr=[];
+					for(var i=0;i<$(".cate").length;i++){
+					
+						var pType = $(".cate").eq(i).offset().top;
+						arr.push(pType);
+						
+					}
+					
+					var i = 0;
+					
+					function check(){
+						
+						var wd_height=$(window).height();
+						var croll=$(window).scrollTop();
+						//console.log(arr[i])
+						if(arr[i] < wd_height + croll){
+						
+							var pid = $(".cate").eq(i).attr("newpath");
+							var url = "__APP__/Index/getGoods";
+							var html='';
+							$.get(url,{"pid":pid},function(data){
+								
+								for(j in data){
+									
+                                    html += '<div class="col-md-3 span_6"><div class="box_inner"><a href="__APP__/goods/index/goodsId/'+data[j]['goodsId']+'" ><img style="width:220px;height:220px" src="__PUBLIC__/Home/'+data[j]['pic']+'" class="img-responsive" alt=""/></a><div class="sale-box"></div><div class="desc"><h3>'+data[j]['goodsName']+'</h3><h4>'+data[j]['price']+'￥</h4><ul class="list2"><li class="list2_left"><span class="m_1 ajaxbtn"><a href="#" class="link addToCart" goodsId="'+data[j]['goodsId']+'">加入购物车</a></span></li><li class="list2_right"><span class="m_2"><a href="__APP__/goods/index/goodsId/'+data[j]['goodsId']+'" class="link1">查看详情</a></span></li><div class="clearfix"></div></ul><div class="heart"> </div></div></div></div>';
+							   
+									
+								}
+								$('#htm'+pid).prepend(html);
+								
+								
+							},'json');
+							i++;
+							
+						}
+						
+					}
+
+					$(window).scroll(function(){
+						check();
+					})
+
+</SCRIPT>
+</block>

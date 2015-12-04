@@ -1,0 +1,138 @@
+<extend name="Public:parent" />
+<block name="title">
+	发布闲置
+</block>
+<block name="content">
+		<div class="men">
+		<div class="container">
+			<div class="col-md-11 register">
+				  <form class="form-horizontal" role="form"> 
+					 <div class="form-group">
+						 <div class="col-md-offset-5">
+							 <h3 class="text-success">发布闲置</h3>
+						 </div>
+						 <br />
+						 <div class="form-group">
+							<label class="col-md-3 control-label">商品标题:</label>
+							<div class="col-xs-6">
+							<input class="form-control col-md-6" type="text" placeholder="请输入商品标题"> 
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">类别:</label>
+							<div class="col-md-2">
+								 <select class="form-control">
+									 <option value="">--请选择类别--</option>
+									 <option value="">数码</option>
+									 <option value="">衣</option>
+									 <option value="">行</option>
+									 <option value="">玩</option>
+									 <option value="">书</option>
+								 </select>
+							 </div>
+							<div class="col-md-2">
+								 <select class="form-control">
+									 <option value="">--请选择类别--</option>
+									 <option value="">手机</option>
+									 <option value="">相机</option>
+									 <option value="">平板</option>
+									 <option value="">电脑</option>
+								 </select>
+							 </div>
+							<div class="col-md-2">
+								 <select class="form-control">
+									 <option value="">--请选择类别--</option>
+									 <option value="">iPhone</option>
+									 <option value="">三星</option>
+									 <option value="">小米</option>
+									 <option value="">华为</option>
+								 </select>
+							 </div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">新旧:</label>
+							<div class="col-xs-2">
+								<select class="form-control">
+									<option>非全新</option>
+									<option>全新</option>
+									<option>99新</option>
+									<option>9成新</option>
+									<option>8成新</option>
+									<option>7成新</option>
+									<option>6成新</option>
+									<option>5成新</option>
+									<option>4成新</option>
+									<option>3成新</option>
+									<option>2成新</option>
+									<option>1成新</option>
+								</select>
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">价格:</label>
+							<div class="col-md-2">
+								<input class="form-control col-xs-2" type="text">
+							</div>
+							<div style="margin-top:5px;">￥</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">品牌:</label>
+							<div class="col-xs-2">
+								<input class="form-control" type="text" >
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">型号:</label>
+							<div class="col-xs-2">
+								<input class="form-control" type="text">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">颜色:</label>
+							<div class="col-xs-2">
+								<input class="form-control" type="text" >
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">联系方式:</label>
+							<div class="col-xs-6">
+								<input class="form-control" type="text" placeholder="">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">姓名:</label>
+							<div class="col-xs-6">
+								<input class="form-control" type="text" placeholder="">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">所在地:</label>
+							<div class="col-xs-6">
+								<input class="form-control" type="text" placeholder="">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">上传照片:</label>
+							<div class="col-xs-6">
+								<input type="file" multiple> 
+							</div>
+						 </div>
+						  <div class="form-group">
+							<label class="col-md-3 control-label">宝贝描述:</label>
+							<div class="col-md-6">
+								<textarea class="form-control" cols="61" rows="10" style="resize:none"></textarea>
+							</div>
+						 </div>
+						 <div class="form-group">
+						 <div class="col-md-offset-3 col-md-10">
+							 <button type="submit" class="btn btn-info">发布</button>
+							 <button type="reset" class="btn btn-danger">重置</button>
+						 </div>
+						 <div class="clearfix"> </div>
+						 </div>
+					  </div>
+				   </form>
+			   </div>
+		 </div>
+	</div>
+</block>

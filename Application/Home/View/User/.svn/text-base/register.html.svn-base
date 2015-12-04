@@ -1,0 +1,242 @@
+<extend name="Public:parent" />
+<block name="title">
+	注册	
+</block>
+<block name="content">
+	<div class="men">
+		<div class="container">
+			<div class="col-md-6">
+				<img class="col-md-12" src="__PUBLIC__/Home/images/thumb1.jpg" />
+			</div>
+			<div class="col-md-6 register">
+				  <form action="__APP__/user/regSubmit" method="post" class="form-horizontal" role="form"> 
+					 <div class="form-group">
+						 <div class="col-md-offset-5">
+							 <h3 class="text-success">用户注册</h3>
+						 </div>
+						 <br />
+						 <div class="form-group">
+							 <label class="col-md-3 control-label" >用户名:</label>
+							 <span id="usertip"></span>
+							<div class="col-xs-6">
+								<input id="regUsern" name="username" class="form-control col-md-6 usermsg" type="text" placeholder=""> 
+							</div>
+						 </div>
+						 <div class="form-group">
+							 <label class="col-md-3 control-label">密码:</label>
+							 <span id="passtip"></span>
+							<div class="col-xs-6">
+								<input id="regPwd" name="password" class="form-control usermsg" type="password" placeholder="">
+							</div>
+						 </div>
+						 <div class="form-group">
+							 <label class="col-md-3 control-label">确认密码:</label>
+							 <span id="repasstip"></span>
+							<div class="col-xs-6">
+								<input id="reregPwd" name="repassword" class="form-control usermsg" type="password">
+							</div>
+						 </div>
+						 <div class="form-group">
+							 <label class="col-md-3 control-label">手机号:</label>
+							 <span id="phonetip"></span>
+							<div class="col-xs-6">
+								<input id="phone" name="tel" class="form-control col-md-6 usermsg" type="text" placeholder=""> 
+							</div>
+						 </div>
+						  <div class="form-group">
+							  <label class="col-md-3 control-label">邮箱:</label>
+							  <span id ="emailtip"></span>
+							<div class="col-xs-6">
+								<input name="email"id="email" class="form-control col-md-6 usermsg" type="text" placeholder=""> 
+							</div>
+						 </div>
+                         
+						  <div class="form-group">
+							  <label class="col-md-3 control-label">验证码:</label>
+							  <span id="res"></span>
+							<div class="col-xs-6">
+								<input name="code" class="form-control col-md-6 usermsg" type="text" id="code" placeholder=""> 
+							</div>
+						 </div>
+                         <!--验证码图片-->
+                          <div class="form-group">
+							  <label class="col-md-3 control-label"></label>
+							  <span style="color:red;font-size:14px;"></span>
+							<div id="test" class="col-xs-6">
+								 <img id="codeImg" class="img" src="__APP__/user/regcode"/>
+                                 <div id="test"></div>
+							</div>
+						 </div>
+						 <div class="form-group">
+						 <div class="col-md-offset-3 col-md-10">
+							 <button type="submit" name="sub" class="btn btn-info" value="submit" id="regSub">提交</button>
+							 <button type="reset" class="btn btn-danger">重置</button>
+						 </div>
+						 <div class="clearfix"> </div>
+						 </div>
+					  </div>
+				   </form>
+			   </div>
+		 </div>
+	</div>
+</block>
+<block name="importJs">
+
+	<!--<script src="__PUBLIC__/Home/js/jquery.js"></script>-->
+	<script>
+        regUsern ='';
+        pwd = '';
+        phone ='';
+        email = '';
+        ucheck='';
+        pcheck='';
+        echeck='';
+        tcheck='';
+        ccheck='';
+        pwdSign = '';
+	  //验证用户名 
+		$("#regUsern").blur(function(){
+			
+          
+            regUsern = $("#regUsern").val();
+            
+            if(regUsern ==""){
+                
+				$("#usertip").html("用户名不为空");
+                $("#usertip").css("color","red");
+            }else{
+                name = regUsern; 
+                var nleng = $("#regUsern").val().length;
+                if((nleng >= 6)&&(nleng <= 12)){
+                    $.post("__APP__/user/ajaxReg",{"username":name},function(ndata){
+                    if(ndata == 1){
+                        $("#usertip").html("用户名已存在");                      
+                        $("#usertip").css("color","red");
+                    }else{
+                        
+                        $("#usertip").html("用户名可用");
+                        $("#usertip").css("color","green");
+                        ucheck = 1;       
+                    } 
+                
+                },"json");
+            }else{
+                $("#usertip").html("位数为六至十二位");                      
+                $("#usertip").css("color","red");
+            }
+        }
+					});
+        //验证码验证;
+        $("#code").blur(function(){
+            
+            code = $("#code").val();
+            
+            $.post("__APP__/user/regCodeCheck",{"code":code},function(data){
+            
+           
+            if(data == 1){
+                res ="验证成功"; 
+                $("#res").html(res);
+                 $("#res").css("color","green");
+                ccheck = 1;
+            }else{
+                res = "验证失败"; 
+                $("#res").html(res);
+                $("#res").css("color","red");
+            }
+            },"json");
+        });
+        //验证码刷新       
+        $("#codeImg").click(function(){
+            var a =Math.ceil(Math.random()*1000000000/10000000);
+            var url = '__APP__/user/regcode#'+a;
+            $(this).attr("src",url); 
+        });
+		//密码验证
+
+		$("#regPwd").blur(function() {
+            pwd = $("#regPwd").val();
+           
+           if(pwd==''){
+              
+               $("#passtip").html("密码不能为空"); 
+               $("#passtip").css("color","red");
+            }else{
+                var pleng = pwd.length;   
+               
+                if((pleng >=6)&&(pleng<=12)){
+                    $("#passtip").html("密码符合要求"); 
+                    $("#passtip").css("color","green");
+                    pwdSign = 1;
+                }else{
+                    $("#passtip").html("密码为六至十二位"); 
+                    $("#passtip").css("color","red");
+                    pwdSign = 0;
+                    
+                }
+            }
+
+		});
+    //确认密码验证     
+    $("#reregPwd").blur(function(){
+        rePwd = $("#reregPwd").val(); 
+        if(pwd==''){
+              $("#repasstip").html("密码不能为空"); 
+               $("#repasstip").css("color","red");
+            }else{
+                if((rePwd==pwd)&&pwdSign){
+                    $("#repasstip").html("密码验证成功"); 
+                    $("#repasstip").css("color","green");
+                    pcheck = 1;
+
+                }else{
+                    $("#repasstip").html("密码不符合要求"); 
+                    $("#repasstip").css("color","red");  
+                } 
+            }
+    });
+    //邮箱验证
+    $("#email").blur(function(){
+        email = $("#email").val();
+        var pattern = /\w+@\w+(\.com|\.cn)/;
+        prag = email.match(pattern);
+        if(prag){
+            $("#emailtip").html("邮箱验证成功"); 
+            $("#emailtip").css("color","green");
+            echeck = 1; 
+        }else{
+             $("#emailtip").html("邮箱验证失败"); 
+            $("#emailtip").css("color","red"); 
+    }
+        
+    });
+    //手机号验证
+    $("#phone").blur(function(){
+        phone = $("#phone").val();
+     
+        //var pattern = /^1[0-9]{10}$/;
+        var pattern = /^1\d{10}$/;
+       
+         prag = phone.match(pattern);
+       
+        if(prag){
+            $("#phonetip").html("号码验证成功"); 
+            $("#phonetip").css("color","green");
+            tcheck = 1; 
+        }else{
+             $("#phonetip").html("号码验证失败"); 
+             $("#phonetip").css("color","red"); 
+         }
+     });
+	
+     //注册
+     $("#regSub").click(function(){
+         if((ucheck ==1)&&(pcheck ==1)&&(tcheck ==1)&&(echeck==1)&&(ccheck ==1)){
+                return true;
+            }else{
+                return false; 
+        }
+     });
+
+	</script>
+</block>

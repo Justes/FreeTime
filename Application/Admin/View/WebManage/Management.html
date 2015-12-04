@@ -1,0 +1,85 @@
+<extend name="Public:parent"/>
+<block name="content">
+	<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon edit"></i><span class="break"></span>网站属性修改</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form action="__ACTION__" class="form-horizontal" method="post" enctype="multipart/form-data">
+							<fieldset>
+							<div class="control-group success">
+								<label class="control-label" for="inputSuccess">网站标题:</label>
+								<div class="controls">
+									<input name="title" type="text" id="title" value="{$data['title']}">
+								</div>
+							  </div>
+							 <div class="control-group success">
+								<label class="control-label" for="inputSuccess">网站关键字:</label>
+								<div class="controls">
+									<input name="keywords" type="text" id="keywords" value="{$data['keywords']}">
+								</div>
+							  </div>
+							   <div class="control-group success">
+								<label class="control-label" for="inputSuccess">网站描述:</label>
+								<div class="controls">
+									<input name="description" type="text" id="description" value="{$data['description']}">
+								</div>
+							  </div>
+							  <div class="control-group success">
+								<label class="control-label" for="inputSuccess">版权所有:</label>
+								<div class="controls">
+									<input name="copyright" type="text" id="copyright" value="{$data['copyright']}">
+								</div>
+							  </div>
+							  <div class="control-group success">
+								<label class="control-label" for="inputSuccess">ICP备案号:</label>
+								<div class="controls">
+									<input name="record" type="text" id="copyright" value="{$data['record']}">
+								</div>
+							  </div>
+							  <div class="control-group">
+								<label class="control-label" for="selectError">网站开关:</label>
+								<div class="controls">
+								  <select name="switch" id="switch" data-rel="chosen">
+									  <option value="1" <if condition="$data['switch'] eq 1"> selected <else /> </if> >开启</option>
+									  <option value="0" <if condition="$data['switch'] eq 0"> selected <else /> </if> >关闭</option>
+								  </select>
+								</div>
+							  </div>
+							  <div class="control-group success">
+								<label class="control-label" for="inputSuccess">关闭提示:</label>
+								<div class="controls">
+									<input name="tip" type="text" id="tip" value="{$data['tip']}">
+								</div>
+							  </div>
+							  <div class="control-group">
+								<label class="control-label">更改Logo:</label>
+								<div class="controls">
+								  <input name="logo" type="file">
+								</div>
+								<div>
+									<img width="200px;" src="__PUBLIC__/Admin/{$data['logo']}">
+								</div>
+							  </div>
+							
+							  <div class="form-actions">
+								  <input name="id" type="hidden" value="{$data['id']}">
+								<input name="sub" type="submit" class="btn btn-primary" value="提交">
+								<button class="btn">取消</button>
+							  </div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+	</div><!--/span-->
+	
+			
+			
+			
+</block>

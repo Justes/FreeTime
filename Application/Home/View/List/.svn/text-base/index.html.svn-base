@@ -1,0 +1,65 @@
+<html>
+ <head></head>
+ <body>
+  <extend name="Public:parent" /> 
+  <block name="title">
+    商品分类列表 
+  </block> 
+  <block name="content"> 
+   <div class="men"> 
+    <div class="container"> 
+	{:W("Category/getCate")}
+    <div class="col-md-9"> 
+      <div class="mens-toolbar"> 
+       <div class="sort"> 
+        <div class="sort-by"> 
+			<label style="font-size:20px;">{$typeName}</label> 
+         <!-- <select> <option value=""> Popularity </option> <option value=""> Price : High to Low </option> <option value=""> Price : Low to High </option> </select> --> 
+        </div> 
+       </div> 
+       <div class="pager"> 
+       <!--  <div class="limiter visible-desktop"> 
+         <label>Show</label> 
+         <select> <option value="" selected="selected"> 9 </option> <option value=""> 15 </option> <option value=""> 30 </option> </select> per page 
+        </div> 
+        <ul class="dc_pagination dc_paginationA dc_paginationA06"> 
+         <li><a href="#" class="previous">Pages</a></li> 
+         <li><a href="#">1</a></li> 
+         <li><a href="#">2</a></li> 
+        </ul>  -->
+        <div class="clearfix"></div> 
+       </div> 
+       <div class="clearfix"></div> 
+      </div> 
+      <div class="span_2"> 
+	  <if condition="$goodsData eq 'nogoods'">
+			该栏目商品正在上架中，敬请期待……
+	  <else />
+	  <foreach name="goodsData" item="goods">
+			<div class="col_1_of_single1 span_1_of_single1"> 
+				<a href="__APP__/goods/index/goodsId/{$goods['goodsId']}"> <img style="width:250px;height:250px" src="__PUBLIC__/Home/{$goods['pic']}" class="img-responsive" alt="" /> 
+					<h3>{$goods['goodsName']}</h3> <span class="reducedfrom"><p style="display:inline">原价:{$goods['preprice']}</p></span> <div style="color:red;font-size:20px;">{$goods['price']}￥</div> 
+				</a> 
+			</div>
+	 </foreach>
+	 </if>
+	 <script>
+		var n = $(".col_1_of_single1");
+		for(var i=0;i<n.length;i++){
+			if(i%3==1){
+				n.eq(i).css("margin-left","-10px");
+			}
+		}
+	 </script>
+      </div> 
+      
+       <div class="clearfix"></div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </block> 
+  <block name="importJs"> 
+  </block> 
+ </body>
+</html>

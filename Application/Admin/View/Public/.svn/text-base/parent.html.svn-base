@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>Admin</title>
+	<meta name="description" content="Bootstrap Metro Dashboard">
+	<meta name="author" content="Dennis Ji">
+	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- end: Mobile Specific -->
+	
+	<!-- start: CSS -->
+	<link id="bootstrap-style" href="__PUBLIC__/admin/css/bootstrap.min.css" rel="stylesheet">
+	<link href="__PUBLIC__/admin/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="__PUBLIC__/admin/css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="__PUBLIC__/admin/css/style-responsive.css" rel="stylesheet">
+	
+	<!-- end: CSS -->
+	
+
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<link id="ie-style" href="__PUBLIC__/admin/css/ie.css" rel="stylesheet">
+	<![endif]-->
+	
+	<!--[if IE 9]>
+		<link id="ie9style" href="__PUBLIC__/admin/css/ie9.css" rel="stylesheet">
+	<![endif]-->
+		
+	<!-- start: Favicon -->
+	<link rel="shortcut icon" href="__PUBLIC__/admin/img/favicon.ico">
+	<!-- end: Favicon -->
+	
+		
+		
+		
+</head>
+
+<body>
+		<!-- start: Header -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="__APP__"><span>闲&nbsp;&nbsp;余</span></a>
+								
+				<!-- start: Header Menu -->
+				<div class="nav-no-collapse header-nav">
+					<ul class="nav pull-right">
+						
+						<li class="dropdown">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								欢迎&nbsp;&nbsp;
+								<if condition="$_SESSION['manage']['auth'] eq 0">
+								<img src="__PUBLIC__/Admin/img/3.jpg" style="width:30px"/>
+								<elseif condition="$_SESSION['manage']['auth'] eq 2"/>
+								<img src="__PUBLIC__/Admin/img/1.jpg" style="width:30px"/>
+								<elseif condition="$_SESSION['manage']['auth'] eq 1"/>
+								<img src="__PUBLIC__/Admin/img/2.jpg" style="width:30px"/>
+								</if>
+								{$_SESSION['manage']['username']}
+								<span class="caret" ></span>
+							</a>
+							<ul class="dropdown-menu"  >
+								<li class="dropdown-menu-title" >
+ 									<span></span>
+								</li>
+								
+								<li><a href="__APP__/Login/logout"><i class="halflings-icon off"></i>退出登录</a></li>
+							</ul>
+						</li>
+						<!-- end: User Dropdown -->
+					</ul>
+				</div>
+				<!-- end: Header Menu -->
+				
+			</div>
+		</div>
+	</div>
+	<!-- start: Header -->
+	
+		<div class="container-fluid-full">
+		<div class="row-fluid">
+				
+			<!-- start: Main Menu -->
+			<div id="sidebar-left" class="span2">
+				<div class="nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li><a href="__APP__"><i class="icon-home"></i><span class="hidden-tablet"> &nbsp;主页</span></a></li>
+						<!--<li><a href="__APP__/order.html"><i class="icon-envelope"></i><span class="hidden-tablet"> &nbsp;订&nbsp;&nbsp;&nbsp;单</span></a></li>-->
+						<li><a href="__APP__/user.html"><i class="icon-group"></i><span class="hidden-tablet"> &nbsp;用户管理</span></a></li>
+						<li><a href="__APP__/admin.html"><i class="icon-user-md"></i><span class="hidden-tablet"> &nbsp;管理员管理</span></a></li>
+						<li><a href="__APP__/block.html"><i class="icon-th-large"></i><span class="hidden-tablet"> &nbsp;版块管理</span></a></li>
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-legal"></i><span class="hidden-tablet"> &nbsp;权限管理<!--</span>&nbsp;&nbsp;<span class="label label-important"> 3 </span>--></a>
+							<ul>
+								<li><a class="submenu" href="__APP__/Auth/rule.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;规则管理</span></a></li>
+								<li><a class="submenu" href="__APP__/Auth/group.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;用户组管理</span></a></li>
+								<!--<li><a class="submenu" href="__APP__/Goods/ManageOrderList.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;订单管理</span></a></li>-->
+							</ul>	
+						</li>
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> &nbsp;商品管理<!--</span>&nbsp;&nbsp;<span class="label label-important"> 3 </span>--></a>
+							<ul>
+								<li><a class="submenu" href="__APP__/Goods/GoodsOnSale.html"><i class="icon-shopping-cart"></i><span class="hidden-tablet">&nbsp;在售商品</span></a></li>
+								<!--<li><a class="submenu" href="__APP__/Goods/GoodsSold.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;已 售 出</span></a></li>-->
+								<li><a class="submenu" href="__APP__/Goods/ManageOrderList.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;订单管理</span></a></li>
+								<li><a class="submenu" href="__APP__/Comment/man.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;评价管理</span></a></li>
+							</ul>	
+						</li>
+						<li><a class="dropmenu" href="#"><i class="icon-trash"></i><span class="hidden-tablet">&nbsp;回收站</span></a>
+							<ul>
+								<li><a class="submenu" href="__APP__/Recycle/RecUsers.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;用户数据</span></a></li>
+								<!--<li><a class="submenu" href="__APP__/Recycle/RecGoods.html"><i class="icon-file-alt"></i><span class="hidden-tablet">&nbsp;商品数据</span></a></li>-->
+								<!--<li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>-->
+							</ul>	
+						
+						</li>
+						<li><a class="dropmenu" href="#"><i class="icon-cog"></i><span class="hidden-tablet">&nbsp;网站管理</span></a>
+							<ul>
+								
+								<li><a class="submenu" href="__APP__/WebManage/Management.html"><i class="icon-cog"></i><span class="hidden-tablet">&nbsp;基本管理</span></a></li>
+								
+								<li><a class="submenu" href="__APP__/WebManage/Links.html"><i class="icon-globe"></i><span class="hidden-tablet">&nbsp;友情链接</span></a></li>
+								
+							</ul>	
+						
+						</li>
+						<li><a class="dropmenu" href="#"><i class="icon-bullhorn"></i><span class="hidden-tablet">&nbsp;公告管理</span></a>
+							<ul>
+							
+								<li><a href="__APP__/WebManage/ppt.html"><i class="icon-picture" style="font-size:14px;"></i><span class="hidden-tablet"> &nbsp;幻灯片管理</span></a></li>
+								
+							</ul>	
+						</li>
+						<!--<li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> &nbsp;媒&nbsp;&nbsp;&nbsp;体</span></a></li>						
+						<li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
+						<li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
+						<li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>
+						
+						<li><a href="table.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
+						<li><a href="calendar.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
+						<li><a href="file-manager.html"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
+						<li><a href="icon.html"><i class="icon-star"></i><span class="hidden-tablet"> Icons</span></a></li>
+						<li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> Login Page</span></a></li>-->
+					</ul>
+				</div>
+			</div>
+			<!-- end: Main Menu -->
+			
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+			
+			<!-- start: Content -->
+			<div id="content" class="span10">
+			
+			
+			<ul class="breadcrumb">
+				<li>
+					
+					<a href="index.html"></a> 
+					
+				</li>
+				<li><a href="#"></a></li>
+			</ul>
+			<block name="content"></block>
+	</div><!--/.fluid-container-->
+	
+			<!-- end: Content -->
+		</div><!--/#content.span10-->
+		</div><!--/fluid-row-->
+		
+	<div class="modal hide fade" id="myModal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>Settings</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here settings can be configured...</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>
+		</div>
+	</div>
+	
+	<div class="clearfix"></div>
+	
+	<footer>
+
+		<p>
+		<span style="text-align:left;float:left">&copy; 2013 <a href="#" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+			
+		</p>
+
+	</footer>
+	
+	<!-- start: JavaScript-->
+
+		<script src="__PUBLIC__/admin/js/jquery-1.9.1.min.js"></script>
+	<script src="__PUBLIC__/admin/js/jquery-migrate-1.0.0.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery-ui-1.10.0.custom.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.ui.touch-punch.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/modernizr.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.cookie.js"></script>
+	
+		<script src='__PUBLIC__/admin/js/fullcalendar.min.js'></script>
+	
+		<script src='__PUBLIC__/admin/js/jquery.dataTables.min.js'></script>
+
+		<script src="__PUBLIC__/admin/js/excanvas.js"></script>
+	<script src="__PUBLIC__/admin/js/jquery.flot.js"></script>
+	<script src="__PUBLIC__/admin/js/jquery.flot.pie.js"></script>
+	<script src="__PUBLIC__/admin/js/jquery.flot.stack.js"></script>
+	<script src="__PUBLIC__/admin/js/jquery.flot.resize.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.chosen.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.uniform.min.js"></script>
+		
+		<script src="__PUBLIC__/admin/js/jquery.cleditor.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.noty.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.elfinder.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.raty.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.iphone.toggle.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.uploadify-3.1.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.gritter.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.imagesloaded.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.masonry.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.knob.modified.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/jquery.sparkline.min.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/counter.js"></script>
+	
+		<script src="__PUBLIC__/admin/js/retina.js"></script>
+
+		<script src="__PUBLIC__/admin/js/custom.js"></script>
+	<!-- end: JavaScript-->
+	
+</body>
+<block name="importJs">
+</block>
+</html>

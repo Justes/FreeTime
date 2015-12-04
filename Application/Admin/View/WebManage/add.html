@@ -1,0 +1,100 @@
+<extend name="Public:parent" />
+<block name="content">
+	<div class="row-fluid sortable">
+		<div class="box span12">
+			<div class="box-header" data-original-title>
+				<h2><i class="halflings-icon edit"></i><span class="break"></span>添加友情链接</h2>
+				<div class="box-icon">
+					<a href="__CONTROLLER__/links"><i class="halflings-icon eye-open"></i></a>
+					<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+					<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+					<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+				</div>
+			</div>
+			<div class="box-content">
+				<form class="form-horizontal" method="post" action="__ACTION__" enctype="multipart/form-data">
+					<fieldset>
+					 <div class="control-group success">
+						<label class="control-label" for="inputSuccess">链接名:</label>
+						<div class="controls">
+							<input type="text" name="linkName" value="{$data['linkName']}" />
+							<span style="color:red"></span>
+						</div>
+					  </div>
+					   <div class="control-group success">
+						<label class="control-label" for="inputSuccess">链接地址:</label>
+						<div class="controls">
+							<input type="text" name="addr" value="{$data['addr']}" />
+							<span style="color:red"></span>
+						</div>
+					  </div>
+					  <div class="control-group success">
+						<label class="control-label" for="inputSuccess">站长email:</label>
+						<div class="controls">
+							<input type="text" name="email" value="{$data['email']}"/>
+						</div>
+					  </div>
+					  <div class="control-group">
+						<label class="control-label" for="selectError">是否启用:</label>
+						<div class="controls">
+						  <select name="status" data-rel="chosen">
+							  <option value="1">启用</option>
+							<option value="0">关闭</option>
+						  </select>
+						</div>
+					  </div>
+					  <div class="control-group">
+						<label class="control-label">上传Logo:</label>
+						<div class="controls">
+						  <input name="logo" type="file">
+						</div>
+					</div>
+					  <div class="form-actions">
+						<input type="submit" class="btn btn-primary" name="sub" value="提交">
+						<a href="__CONTROLLER__/links" class="btn btn-default btn-xs" >返回</a>
+					  </div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="importJs">
+	<script>
+		$("input[name='linkName']").blur(function() {
+				if(!$(this).val()) {
+					$(this).next().text("*请输入链接名");
+				} else {
+					$(this).next().text("");
+				}
+			});
+		$("input[name='addr']").blur(function() {
+				if(!$(this).val()) {
+					$(this).next().text("*请输入链接地址");
+				} else {
+					$(this).next().text("");
+				}
+			});
+	
+		$("input[name='sub']").click(function() {
+				var flag = 0;
+
+				if($("input[name='linkName']").val() == '') {
+					$("input[name='linkName']").next().text("*请输入链接名");
+					flag++;
+				}
+
+				if($("input[name='addr']").val() == '') {
+					$("input[name='addr']").next().text("*请输入链接地址");
+					flag++;
+				}
+
+				if(flag) {
+					alert("请补全信息");
+					return false;
+				} else {
+					return true;
+				}
+			});
+	</script>
+</block>

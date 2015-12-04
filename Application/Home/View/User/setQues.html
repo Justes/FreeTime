@@ -1,0 +1,172 @@
+<extend name="Public:parent" />
+<block name="title">
+	设置密保问题
+</block>
+<block name="content">
+	<div class="men">
+		<div class="container">
+			<div class="col-md-11 register">
+                 <div class="col-md-12" style="border-bottom:3px solid #e05b5b;text-align:center;height:100px;">
+                   <h3 class="text-success">设置密保问题</h3> 
+                </div>
+                <div class="col-md-2" style="float:left">
+
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/Info">个人信息</a>
+                    </div>
+                     <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/changePwd">更改密码</a>
+                   </div>
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/setQues">安全中心</a> 
+                   </div>
+                     <div style="margin-top:40px">
+                       <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/changeInfo">更改信息</a> 
+                   </div>
+                   
+                </div>
+                <div class="col-md-10" style="border-left:3px solid #e05b5b;float:left;padding:30px;"> 
+                        <form class="form-horizontal" role="form" method="post" action="__APP__/user/actSetQues" enctype="multipart/form-data"> 
+                            
+                                
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">用户名:</label>
+                                    <div class="col-xs-6">
+                                        <input class="form-control col-md-6" disabled type="text" placeholder="{$_SESSION['user']['username']}"> 
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">输入密码提示问题1:</label>
+                                     <span id="tipq1"></span>
+                                    <div class="col-xs-6">
+                                        <input name="question1" class="form-control col-md-4" type="text" id="ques1">
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">输入密保问题答案1:</label>
+                                     <span id="tipa1"></span>
+                                    <div class="col-xs-6">
+                                        <input name="answer1" class="form-control col-md-4" type="text" id="ans1">
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">输入密码提示问题2:</label>
+                                     <span id="tipq2"></span>
+                                    <div class="col-xs-6">
+                                        <input name="question2" class="form-control col-md-4" type="text" id="ques2">
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">输入密保问题答案2:</label>
+                                     <span id="tipa2"></span>
+                                    <div class="col-xs-6">
+                                        <input name="answer2" class="form-control col-md-4" type="text" id="ans2">
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">输入密码提示问题3:</label>
+                                     <span id="tipq3"></span>
+                                    <div class="col-xs-6">
+                                        <input name="question3" class="form-control col-md-4" type="text" id="ques3">
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">输入密保问题答案3:</label>
+                                     <span id="tipa3"></span>
+                                    <div class="col-xs-6">
+                                        <input name="answer3" class="form-control col-md-4" type="text" id="ans3">
+                                    </div>
+                                </div>
+                                
+                                 <div class="form-group">
+                                 <div class="col-md-offset-3 col-md-10">
+                                     <button type="submit" name="submit" class="btn btn-info" value="value" id="change">提交</button>
+                                     <button type="reset" class="btn btn-danger">重置</button>
+                                 </div>
+                                 <div class="clearfix"> </div>
+                                 </div>
+                              </div>
+                          </form>
+                        </div>
+			   </div>
+		 </divi>
+	</div>
+<script>
+    ques1 = '';
+    ques2 = '';
+    ques3 = '';
+    ans1 = '';
+    ans2 = '';
+    ans3 = '';
+   
+    $("#ques1").blur(function(){
+       ques1 = $("#ques1").val();  
+       queslength1 = $("#ques1").val();
+       if(queslength1==0){
+           $("#tipq1").html("问题不能为空");
+           $("#tipq1").css("color","red");
+        }else{
+            ques1 = 1;
+        } 
+    }); 
+    $("#ques2").blur(function(){
+	alert(2);
+       ques2 = $("#ques2").val();  
+       queslength2 = $("#ques2").val();
+       if(queslength2==0){
+           $("#tipq2").html("问题不能为空");
+           $("#tipq2").css("color","red");
+        }else{
+            ques2 = 1;
+        }  
+    }); 
+    $("#ques3").blur(function(){
+       ques3 = $("#ques3").val();  
+       queslength3 = $("#ques3").val();
+       if(queslength3==0){
+           $("#tipq3").html("问题不能为空");
+           $("#tipq3").css("color","red");
+        }else{
+            ques3 = 1;
+        }  
+    }); 
+    $("#ans1").blur(function(){
+       ans1 = $("#ans1").val();  
+       anslength1 = $("#ans1").val();
+       if(anslength1==0){
+           $("#tipa1").html("答案不能为空");
+           $("#tipa1").css("color","red");
+        }else{
+            ans1 = 1;
+        }  
+    }); 
+    $("#ans2").blur(function(){
+       ans2 = $("#ans2").val();  
+       anslength2 = $("#ans2").val();
+       if(anslength2==0){
+           $("#tipa2").html("答案不能为空");
+           $("#tipa2").css("color","red");
+        }else{
+            ans2 = 1;
+        }  
+    }); 
+    $("#ans3").blur(function(){
+       ans3 = $("#ans3").val();  
+       anslength3 = $("#ans3").val();
+       if(anslength3==0){
+           $("#tipa3").html("答案不能为空");
+           $("#tipa3").css("color","red");
+        }else{
+            ans3 = 1;
+        }  
+    }); 
+
+    $("#change").click(function(){
+        if(ques1&&ques2&&ques3&&ans1&&ans2&&ans3){
+            return true; 
+        }else{
+            return false; 
+        } 
+    });
+</script>
+</block>

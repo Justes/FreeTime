@@ -1,0 +1,361 @@
+<extend name="Public:parent" />
+<block name="title">
+	发布闲置
+</block>
+<block name="content">
+	
+	<div class="men">
+		<div class="container">
+			<div class="col-md-11 register">
+				  <form action="__ACTION__" method="post" enctype="multipart/form-data" class="form-horizontal" role="form"> 
+					 <div class="form-group">
+						 <div class="col-md-offset-5">
+							 <h3 class="text-success">发布闲置</h3>
+						 </div>
+						 <br />
+						 <div class="form-group">
+							<label class="col-md-3 control-label">商品标题:</label>
+							<span style="color:red;"></span>
+							<div class="col-xs-6">
+								<input id="goodsName" name="goodsName" class="form-control col-md-6" type="text" placeholder="请输入商品标题" value="{$data['goodsName']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">类别:</label>
+							 <span style="color:red;"></span>
+							<div class="col-md-2">
+								 <select id="type1" name="type1" class="form-control">
+									 <option value="0">--请选择类别--</option>
+									 <!-- 修改时把商品的类别默认选中
+									 <foreach name="ty1" item="t1">
+										<if condition="($t1['id']) eq ($typeId['typePath1'])">
+											<option value="{$t1['id']}" selected>{$t1['typeName']}</option>
+										<else />
+										-->
+											<option value="{$t1['id']}">{$t1['typeName']}</option>
+										</if>
+									 </foreach>
+								 </select>
+							 </div>
+							<div class="col-md-2">
+								 <select id="type2" name="type2" class="form-control" style="display:none">
+									 <foreach name="ty2" item="t2">
+										 <option value="{$t2['path']}">{$t2['typeName']}</option>
+									 </foreach>
+								 </select>
+							 </div>
+							<div class="col-md-2">
+								 <select id="type3" name="type3" class="form-control" style="display:none">
+									 <foreach name="ty3" item="t3">
+										 <option value="{$t3['path']}">{$t3['typeName']}</option>
+									 </foreach>
+									
+								 </select>
+							 </div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">新旧:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-2">
+								<select id="old" name="old" class="form-control">
+									<option value="非全新">非全新</option>
+									<option value="全新">全新</option>
+									<option value="99新">99新</option>
+									<option value="9成新">9成新</option>
+									<option value="8成新">8成新</option>
+									<option value="7成新">7成新</option>
+									<option value="6成新">6成新</option>
+									<option value="5成新">5成新</option>
+									<option value="4成新">4成新</option>
+									<option value="3成新">3成新</option>
+									<option value="2成新">2成新</option>
+									<option value="1成新">1成新</option>
+								</select>
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">价格:</label>
+							<span style="color:red"></span>
+							<div class="col-md-2">
+								<input id="price" name="price" class="form-control col-xs-2" type="text" value="{$data['price']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">原价:</label>
+							<span style="color:red"></span>
+							<div class="col-md-2">
+								<input id="preprice" name="preprice" class="form-control col-xs-2" type="text" value="{$data['preprice']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">品牌:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-2">
+								<input id="brand" name="brand" class="form-control" type="text" value="{$data['brand']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">型号:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-2">
+								<input id="model" name="model" class="form-control" type="text" value="{$data['model']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">颜色:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-2">
+								<input id="color" name="color" class="form-control" type="text" value="{$data['color']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">联系方式:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-6">
+								<input id="tel" name="tel" class="form-control" type="text" value="{$data['tel']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">姓名:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-6">
+								<input id="userN" name="username" class="form-control" type="text" value="{$data['username']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">所在地:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-6">
+								<input id="address" name="address" class="form-control" type="text" value="{$data['address']}">
+							</div>
+						 </div>
+						 <div class="form-group">
+							<label class="col-md-3 control-label">上传照片:</label>
+							<span style="color:red"></span>
+							<div class="col-xs-6">
+								<input id="photos" name="photos[]" type="file" multiple /> 
+							</div>
+						 </div>
+						  <div class="form-group">
+							<label class="col-md-3 control-label">宝贝描述:</label>
+							<span style="color:red"></span>
+							<div class="col-md-6">
+								<textarea id="description" name="description" class="form-control" cols="61" rows="10" style="resize:none">{$data['description']}</textarea>
+							</div>
+						 </div>
+						 <div class="form-group">
+						 <div class="col-md-offset-3 col-md-10">
+							 <button id="sub" name="sub" type="submit" class="btn btn-info" value="发布">发布</button>
+							 <button type="reset" class="btn btn-danger">重置</button>
+						 </div>
+						 <input type="hidden" name="goodsId" value="{$data['goodsId']}">
+						 <div class="clearfix"> </div>
+						 </div>
+					  </div>
+				   </form>
+			   </div>
+		 </div>
+	</div>
+</block>
+<block name="importJs">
+	<script>
+		var str = window.location.pathname;
+		str = str.split("/");
+		var id = str[str.length - 2];
+		if(id == "id") {
+			id = str[str.length - 1];
+		}
+
+		// 如果选择了第一类就显示第二类
+		$("#type1").change(function() {
+
+				// 得到第一类的id
+				var v1 = $("#type1").val();
+
+				// 请求Post控制器下的type方法
+				var url = "{:U("Post/type",'','')}";
+				var op = '<option value="0">--请选择类别--</option>';
+
+				// 显示第二类的位置
+				$("#type2").css("display","inline");
+				
+				// 通过ajax get方法和第一类的id作为第二类的parentId
+				// 去请求第二类的内容
+				$.get(url,{"t2":v1,"id":id},function(data) {
+
+					// 返回的是个数组,遍历出数组中的id和typeName
+					for(var i = 0; i < data.length; i++) {
+
+						// 把每个选项连接起来
+						op += "<option value="+data[i].id+">"+data[i].typeName+"</option>";
+					}
+
+					// 显示第二类里的内容
+					$("#type2").html(op);
+					},"json");
+
+				// 如果值为空，即默认,就不显示第二类
+				if($("#type1").val() == "0") {
+					$("#type2").css("display","none");
+				}
+
+				// 没选择第二类就不显示第三类
+				$("#type3").css("display","none");
+			});
+
+		// 如果选择了第二类就显示第三类
+		$("#type2").change(function() {
+
+				var v2 = $("#type2").val();
+				var url = "{:U('Post/type','','')}";
+				var op = '<option value="0">--请选择类别--</option>';
+
+				$("#type3").css("display","inline");
+				
+				// 通过ajax get方法去请求第三类的内容
+				$.get(url,{"t3":v2},function(data) {
+					for(var i = 0; i < data.length; i++) {
+						op += "<option value="+data[i].id+">"+data[i].typeName+"</option>";
+					}
+					$("#type3").html(op);
+					},"json");
+
+				// 如果值为空，即默认,就不显示第三类
+				if($("#type2").val() == "0") {
+					$("#type3").css("display","none");
+				}
+			});
+
+		// 判断是否为空
+		$("#goodsName").blur(function(){
+				if(!$(this).val()) {
+					$(this).parent().prev().text("*请输入商品标题");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+
+		$("#type1").change(function() {
+				if($(this).val() == 0) {
+					$(this).parent().prev().text("请选择商品类别");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+
+		$("#price").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入价格(单位：元)");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+		
+		$("#preprice").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入原价(单位：元)");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+
+		$("#brand").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入品牌");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+		
+		$("#model").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入型号");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+	
+		$("#color").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入颜色");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+				
+		$("#tel").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入联系方式");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+
+		$("#userN").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入姓名");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+	
+		$("#address").blur(function() {
+				if(!$(this).val()) {
+					$(this).parent().prev().text("请输入地址");
+				} else {
+					$(this).parent().prev().text("");
+				}
+			});
+	
+		// 没有补全信息就无法提交数据
+		$("#sub").click(function() {
+				var flag = 0;
+				if($("#goodsName").val() == "") {
+					flag++;
+					$("#goodsName").parent().prev().text("请输入商品标题");
+				}
+				if($("#type1").val() == 0 || $("#type2").val() == 0 || $("#type3").val() == 0) {
+					flag++;
+					$("#type1").parent().prev().text("请选择商品类别");
+				}
+				if($("#price").val() == "") {
+					flag++;
+					$("#price").parent().prev().text("请输入价格(单位：元)");
+				}
+				if($("#preprice").val() == "") {
+					flag++;
+					$("#preprice").parent().prev().text("请输入原价(单位：元)");
+				}
+				if($("#brand").val() == "") {
+					flag++;
+					$("#brand").parent().prev().text("请输入品牌");
+				}
+				if($("#model").val() == "") {
+					flag++;
+					$("#model").parent().prev().text("请输入型号");
+				}
+				if($("#color").val() == "") {
+					flag++;
+					$("#color").parent().prev().text("请输入颜色");
+				}
+				if($("#tel").val() == "") {
+					flag++;
+					$("#tel").parent().prev().text("请输入联系方式");
+				}
+				if($("#userN").val() == "") {
+					flag++;
+					$("#userN").parent().prev().text("请输入姓名");
+				}
+				if($("#address").val() == "") {
+					flag++;
+					$("#address").parent().prev().text("请输入地址");
+				}
+				if(flag) {
+					alertify.alert("请补全信息");
+					return false;
+				} else {
+					return true;
+				}
+			});
+	</script>
+</block>

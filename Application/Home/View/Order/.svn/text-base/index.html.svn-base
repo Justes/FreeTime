@@ -1,0 +1,204 @@
+<extend name="Public:parent" />
+<block name="title">
+	我的订单
+</block>
+<block name="content">
+<style>
+    .table th,.table td{
+        text-align:center;
+    }
+</style>
+	<div class="men">
+		<div class="container">
+            <form action="__ACTION__" method="POST">
+                <table class="table table-hover">
+                    <tr>
+                        <th>选  择</th>
+                        <th>编　号</th>
+                        <th>订单号</th>
+                        <th>商品名</th>
+                        <th>单  价</th>
+                        <th>数　量</th>
+                        <th>总  价</th>
+                        <th>时  间</th>
+                        <th>状  态</th>
+                        <th>操  作</th>
+                    </tr>
+                <foreach name="orderData" item="order">
+                <tr orderprice="{$order['orderPrice']}" orderId="{$order['orderId']}">
+                    <td>
+                        <if condition="$order['status'] eq 1">
+                            <img style="cursor:pointer" src="__PUBLIC__/Home/images/completed.png">
+                            <else />
+                            <img class="checked" order="1" style="cursor:pointer" src="__PUBLIC__/Home/images/checked.png">
+                        </if>
+                    </td>
+                        <td>{:$key+1}</td>
+                        <td>{$order['orderId']}{$order['orderTime']|substr=0,10}</td>
+                        <td><a href="__APP__/goods/index/goodsId/{$order['goodsId']}">{$order['goodsName']}</a></td>
+                        <td>{$order['goodsPrice']}</td>
+                        <td>{$order['amount']}</td>
+                        <td {$order['status']? '':'class="pricePerOrder"'}>{$order['orderPrice']}</td>
+                        <td>{$order['orderTime']|date="Y-m-d",###}</td>
+                        <td>{$order['status']?'已支付':'未支付'}</td>
+                        <td orderId="{$order['orderId']}">{$order['status']?"<a href='' class='cancel btn btn-default'>删除</a>":"<a href='' class='cancel btn btn-default'>取消</a> <a href='' class='buy btn btn-danger'>付款</a>"}</td>
+
+                        
+                    </tr>
+                </foreach>
+                    <tr>
+                        <td><button class="btn btn-info">全选</button><td>
+                        <td colspan="7"></td>
+                        <td><span style="margin-right:30px"><b>总价：</b><span style="color:red;width:100px" id="totalPrice"></span><b>￥</b></span><a  hrel="" class="allBuy btn btn-danger">去支付</a></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+	</div>
+			
+</block>
+<block name="importJs">
+	<script>
+        //计算总价
+        function totalPrice(){
+            var img = $("tr td .checked");
+            var perOrder_td = $(".pricePerOrder")
+            var totalPrice = 0;
+            for(var i=0;i<perOrder_td.length;i++){
+                var xxoo = perOrder_td.eq(i).prev().prev().prev().prev().prev().prev().children().attr("order");
+                if(xxoo == '1'){
+                    totalPrice += Number(perOrder_td.eq(i).html());
+                }
+            }
+            $("#totalPrice").html(totalPrice);
+            if(totalPrice == 0){
+                var allBuy = $("td .allBuy");
+                allBuy.attr("disabled",'true');
+            
+            }else{
+				var allBuy = $("td .allBuy");
+                allBuy.removeAttr("disabled");
+			
+			}
+        }
+        totalPrice();
+
+        //取消订单
+        function cancelOrder(){
+            var cancel = $("td:last-child .cancel");
+            for(var i=0;i<cancel.length;i++){
+                cancel.eq(i).click(function(){
+                   var parentNode = $(this).parent();
+                   var orderId = parentNode.attr('orderId');
+                   $.get("__CONTROLLER__/orderDel/orderId",{"orderId":orderId},function(data){
+                       if(data){
+                            parentNode.parent().remove();
+                            totalPrice();
+                        }else{
+                            alert("删除订单失败！");
+                        }
+            });
+                    return false;
+                });
+            }
+        }
+        cancelOrder();
+
+        //单选
+            var checked = $(".checked");
+            var unchecked = $(".unchecked");
+            var src1 = "__PUBLIC__/Home/images/unchecked.png";
+            var src2 = "__PUBLIC__/Home/images/checked.png";
+            var orderIds = '';
+            for(var i=0;i<checked.length;i++){
+                checked.eq(i).click(function(){
+                    var src = $(this).attr("src");
+                    if(src == src1){
+                        $(this).attr("src",src2);
+                        $(this).attr("order","1");
+                        totalPrice();
+                    }else{
+                        $(this).attr("src",src1);
+                        $(this).attr("order","0");
+                        totalPrice();
+                    }
+                });
+            }
+
+            //全选
+            $("td button").toggle(function(){
+                for(var n=0;n<checked.length;n++){
+                    checked.eq(n).attr("src",src1);
+                    checked.eq(n).attr("order","0");
+                }
+                totalPrice();
+                return false;
+            },function(){
+                for(var n=0;n<checked.length;n++){
+                    checked.eq(n).attr("src",src2);
+                    checked.eq(n).attr("order","1");
+                }
+                totalPrice();
+                return false;
+            });
+
+
+
+            //多个订单一起提交
+            var allBuy = $("td .allBuy");
+            var img = $("td .checked");
+
+            allBuy.click(function(){
+                var orderIds = '';
+                for(var m=0;m<buy.length;m++){
+                    if(img.eq(m).attr("order")==1){
+                        orderIds +=img.eq(m).parent().parent().attr("orderId")+",";
+                    }
+                }               
+                orderToBuy(orderIds);
+                return false;
+            });
+
+            //单个订单提交
+            var buy = $("td .buy");
+            buy.click(function(){
+                orderIds = $(this).parent().attr("orderId");
+                orderToBuy(orderIds);
+                return false;
+            });
+
+            function orderToBuy(orderIds){
+                var url = "__CONTROLLER__/commit/orderIds/"+orderIds;
+                window.location.href=url;
+            }
+        
+        
+        /*var buy = $("td:last-child .buy");
+        for(var n=0;n<buy.length;n++){
+            buy.eq(n).click(function(){
+                parentNode = $(this).parent();
+                if($(this).parent().attr("colspan")==9){
+                    $.get("__CONTROLLER__/pay",{"orderSum":totalAmount},function(data){
+                        if(data == 0){
+                            alert("账户余额不足请充值!");
+                            window.location.href="__CONTROLLER__/recharge";
+                        }else{
+                            alert("付款页面"+data);
+                            window.location.href="__CONTROLLER__/commit/orderMoney/";
+                    }
+                    });
+                }else{
+                    parentOrderId = parentNode.attr('orderId');
+                    parentOrderPrice = parentNode.parent().attr('orderprice');
+                    $.get("__CONTROLLER__/pay",{"orderId":parentOrderId,"orderPrice":parentOrderPrice},function(data){
+                            window.location.href="__CONTROLLER__/commit/";
+                        //alert(data['orderPrice']);
+                    });
+            }
+                return false;
+            });
+        }
+        */
+
+	</script>
+</block>

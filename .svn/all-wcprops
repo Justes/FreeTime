@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 26
+/svn/godluck/!svn/ver/250/
+END
+composer.json
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/godluck/!svn/ver/1/composer.json
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/godluck/!svn/ver/1/.gitignore
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/godluck/!svn/ver/1/.htaccess
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/godluck/!svn/ver/1/README.md
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/godluck/!svn/ver/1/index.php
+END
+admin.php
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/godluck/!svn/ver/1/admin.php
+END

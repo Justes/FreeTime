@@ -1,0 +1,83 @@
+<extend name="Public:parent" />
+<block name="content">
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon shopping-cart"></i><span class="break"></span>在售商品</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<table class="table table-hover table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>商品名称</th>
+								  <th>商品类别</th>
+								  <th>商品图片</th>
+								  <th>卖家</th>
+								  <th>商品购入价</th>
+								  <th>商品售出价</th>
+								  <th>商品新旧程度</th>
+								  <th>商品品牌</th>
+								  <th>商品型号</th>
+								  <th>商品颜色</th>
+								  <th>上架时间</th>
+								  <th>商品库存</th>
+								  <th>商品关注度</th>
+								  <th>商品累计评论</th>
+								  <th>商品状态</th>
+								  <th>商品推荐</th>
+								  <th>操作</th>
+							  </tr>
+						  </thead>   
+						  <tbody >
+							<foreach name="data" item="datas" key="k">
+								<tr>
+								
+									<td class="center">{$datas['goodsName']}</td>
+									<td class="center">{$datas['goodsType']}</td>
+									<td class="center"><img src="__PUBLIC__/Home/{$datas['goodsPic']}" style="width:100px"/></td>
+									<td class="center">{$datas['username']}</td>
+									<td class="center">{$datas['preprice']}</td>
+									<td class="center">{$datas['price']}</td>
+									<td class="center">{$datas['old']}</td>
+									<td class="center">{$datas['brand']}</td>
+									<td class="center">{$datas['model']}</td>
+									<td class="center">{$datas['color']}</td>
+									<td class="center">{$datas['postTime']}</td>
+									<td class="center">{$datas['goodsLeft']}</td>
+									<td class="center">{$datas['focus']}</td>
+									<td class="center">{$datas['count']}</td>
+									<td class="center">
+										<span class="{$datas['status'] ? "label label-important" : "label label-success"}" id="status">{$datas['status']? '已下架' :'出售中'}</span>
+									</td>
+									<td class="center">
+										<span class="{$datas['recommend'] ? "label label-warning" : "label"}" id="recommend">{$datas['recommend']? '推荐' :'默认'}</span>
+									</td>
+									<td class="center">
+										<a class="btn btn-success" href="__APP__/Goods/GoodsOnSaleStatus/goodsId/{$datas['goodsId']}/status/{$datas['status']}">
+											<i class="halflings-icon white off"></i>  
+										</a>
+										<a class="btn btn-info" href="__APP__/Goods/GoodsOnSaleRecommend/goodsId/{$datas['goodsId']}/recommend/{$datas['recommend']}">
+											<i class="halflings-icon white thumbs-up"></i>  
+										</a>
+										<!--<a class="btn btn-danger" href="__APP__/Goods/GoodsOnSaleDel/goodsId/{$datas['goodsId']}">
+											<i class="halflings-icon white trash"></i> 
+										</a>-->
+									</td>
+									
+								</tr>
+							</foreach>	
+							
+						
+						  </tbody>
+					  </table>            
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+    
+</block>

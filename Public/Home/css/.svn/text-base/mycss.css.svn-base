@@ -1,0 +1,10 @@
+.tip {
+	color:red;
+	font-size:14px;
+}
+.pagination > li > a {
+	color:#2283c5;
+	background-color:#fafafa;
+	margin:0 -1px 0 0;
+	border-color:#e0e8eb;
+}

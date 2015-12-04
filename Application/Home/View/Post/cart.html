@@ -1,0 +1,219 @@
+<extend name="Public:parent" />
+<block name="title">
+	我的购物车
+</block>
+<block name="content">
+	<div class="men">
+		<div class="container">
+			<div class="table" style="text-align:center;border-top:1px solid #ccc;padding-top:10px;">
+					<div class="col-md-5" style="text-align:left;">
+						<div class="col-md-5">
+							<input checked class="allcheck" type="checkbox" /><span>全选
+						</div>
+						<div class="col-md-6">
+						商品信息
+						</div>
+					</div>
+					<div class="col-md-2">
+						单价
+					</div>
+					<div class="col-md-2">数量</div>
+					<div class="col-md-2">金额</div>
+					<div>操作</div>
+			</div>
+				<table class="table table-striped table-bordered" style="text-align:center">
+				<foreach name="datas" item="data">
+					<tr>
+						<td colspan=6 style="text-align:left">{$data['username']}</td>
+					</tr>
+					<tr>
+						<td class="col-md-5" style="text-align:left">
+							<input abc="bbox" name="box[]" class="col-md-1 chbox" type="checkbox" checked value="{$data['goodsId']}" />
+							<div class="col-md-6"><a href="__APP__/goods/index/goodsId/{$data['goodsId']}"><img width="150px;"height="150px;" src="__PUBLIC__/Home/{$data['goodsPic']}" /></a></div>
+							<div class="col-md-5" style="word-break:break-all"><label>{$data['goodsName']}</label><div>{$data['description']}</div></div>
+						</td>
+						<td class="col-md-2" style="vertical-align:middle">
+							<span>{$data['price']}</span>
+						</td>
+						<td class="col-md-2" style="vertical-align:middle">
+							<button class="calc">-</button>
+							<input  class="amount" type="text" value="{$data['amount']}" goodsId="{$data['goodsId']}" style="width:30px;margin:1px;text-align:center" />
+							<button class="calc">+</button>
+						</td>
+						<td class="col-md-2" style="vertical-align:middle">
+							<span class="money">{$data['amounts']}</span>
+						</td>
+						<td class="col-md-2" style="vertical-align:middle">
+							<button class="del btn btn-danger">删除</button>
+							<!--    记录商品id    -->
+							<input type="hidden" value="{$data['goodsId']}" />
+						</td>
+					</tr>
+				</foreach>
+
+
+
+			</table>
+			<div class="table" style="text-align:center;border-top:1px solid #ccc;padding-top:10px;">
+					<div class="col-md-5" style="text-align:left;">
+						<div class="col-md-5">
+							<input checked class="allcheck" type="checkbox" /><span>全选
+						</div>
+						<div class="col-md-6">
+							<button class="btn btn-danger" id="delAll">批量删除</button></a>
+						</div>
+					</div>
+			</div>
+			<div style="float:right;margin-right:30px;"><img style="cursor:pointer" id="submit" src="__PUBLIC__/Home/images/result.png"></div>
+			<div style="float:right;margin-right:20px;margin-top:20px;">总计:<span id="total">0.00</span>￥</div>
+		</div>
+	</div>
+	<!--		验证码
+	<form action="__ACTION__" method="post">
+		<input name="code" type="text" />
+		<img id="checkImg" src="__CONTROLLER__/code" />
+		<input name="sub" type="submit" value="submit" />
+	</form>
+	-->
+</block>
+<block name="importJs">
+	<script>
+		//$(".allcheck").attr("checked",true);
+		//$(".chbox").attr("checked",true);
+
+		var totalValue = add();
+		$("#total").text(totalValue);
+
+		 //	点击时计算总金额
+		$(".calc").click(function() {
+				var num;
+				var sum;
+				var res;
+
+				//	点击+时增加金额
+				if($(this).text() == "+") {
+					num = $(this).prev().val();
+					num++;
+					$(this).prev().val(num);
+					sum = $(this).parent().prev().children().text();
+					sum *= num;
+					sum = sum.toFixed(2);
+					$(this).parent().next().children().text(sum);
+					
+				//	点击-时减少金额
+				} else {
+					num = $(this).next().val();
+					if(num == 1) {
+						num = 1;
+					} else {
+						num--;
+					}
+					$(this).next().val(num);
+					sum = $(this).parent().prev().children().text();
+					sum *= num;
+					sum = sum.toFixed(2);
+					$(this).parent().next().children().text(sum);
+				}
+				res = add();
+				$("#total").text(res);
+			});
+
+		//  计算总金额
+		function add(){
+			var len =  $(".chbox").length;
+			var res = 0;
+
+			for (var i = 0; i < len; i++){
+				if($(".chbox").eq(i).attr("checked")) {
+					res += parseFloat($(".money").eq(i).text());
+				}
+			}
+			return res.toFixed(2);
+		}
+
+		$(".chbox").click(function() {
+				res = add();
+				$("#total").text(res);
+			});
+
+		// 全选
+		$(".allcheck").click(function() {
+
+				var len = $(".chbox").length;
+				if($(this).prop("checked")) {
+					for(var i = 0; i < len; i++) {
+						$(".chbox").eq(i).prop("checked",true);
+					}
+					$(".allcheck").prop("checked",true);
+				} else {
+					for(var i = 0; i < len; i++) {
+						$(".chbox").eq(i).removeAttr("checked");
+					}
+					$(".allcheck").removeAttr("checked");
+				}
+
+				res = add();
+				$("#total").text(res);
+			});
+
+		//	单个删除 
+		$(".del").click(function() {
+			var url = "{:U('Post/delCart','','')}";
+			var gid = $(this).next().val();
+			var buyerId = {$data['buyerId']};
+
+			$.get(url,{"gid":gid,"buyerId":buyerId},function(data) {
+				},"json");
+			$(this).parent().parent().prev().remove();
+			$(this).parent().parent().remove();
+
+			res = add();
+			$("#total").text(res);
+		});
+
+		// 批量删除
+		$("#delAll").click(function() {
+				var len = $(".chbox").length;
+				var gid = '';
+				var url = "{:U('Post/delCart','','')}";
+				var str = '';
+				var buyerId = {$data['buyerId']};
+
+				for(var i = 0; i < len; i++) {
+					if($(".chbox").eq(i).prop("checked")) {
+						gid = $(".chbox").eq(i).val();
+
+						$.get(url,{"gid":gid,"buyerId":buyerId},function(data) {
+							},"json");
+					}
+				}
+				// 删除符合条件的
+				$("input[abc='bbox']:checked").parent().parent().prev().remove();
+				$("input[abc='bbox']:checked").parent().parent().remove();
+
+				res = add();
+				$("#total").text(res);
+			});
+
+		
+			//获取购物车里的商品数量
+			$("#submit").click(function(){
+				var find = $(".amount");
+				var string = '';
+				var goodsId = '';
+				var goodsAmount = '';
+			
+				for(i=0;i<find.length;i++){
+					goodsId = find.eq(i).attr("goodsId");
+					goodsAmount = find.eq(i).attr("value");
+					string += goodsId+'+'+goodsAmount+'|';
+					
+				}
+				
+				$.get("__APP__/Order/getAmount",{"string":string},function(data){
+					window.location.href="__APP__/Order/index";
+				});
+
+			});
+	</script>
+</block>

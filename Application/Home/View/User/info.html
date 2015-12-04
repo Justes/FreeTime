@@ -1,0 +1,171 @@
+<extend name="Public:parent" />
+<block name="title">
+	个人信息
+</block>
+<block name="content">
+    <div class="men">
+	    <div class="container">
+		    <div class="col-md-11 register">
+                <div class="col-md-12" style="border-bottom:3px solid #e05b5b;text-align:center;height:100px;">
+                   <h3 class="text-success" id="top">个人信息</h3> 
+                </div>
+                <div class="col-md-2" style="float:left">
+
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" id="info">个人信息</a>
+                    </div>
+                     <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" id="changePwd">更改密码</a>
+                   </div>
+                    <div style="margin-top:40px">
+                        <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" id="safe">安全中心</a> 
+                    </div>
+                      <div style="margin-top:40px">
+                       <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" id="changeInfo">更改信息</a> 
+                   </div>
+                   
+                </div>
+                <div class="col-md-10" style="border-left:3px solid #e05b5b;float:left;padding:30px;" id="block">                        
+                        <form class="form-horizontal" role="form"> 
+                           
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">头像:</label>
+                                    <div class="col-xs-6">
+                                        <img class="img" style="width:200px" src="__PUBLIC__/Home/upload/{$_SESSION['user']['profile']}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">用户名:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['username']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">昵称:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['nickname']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">邮箱:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['email']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">手机号:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['tel']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">性别:</label>
+                                    <div class="col-xs-6" style="margin-top:5px;">
+                                        <switch name="_SESSION['user']['sex']">
+                                            <case value="1" break="1"> <label class="col-md-3 control-label">男</label></case>
+                                            <case value="0" break="1"> <label class="col-md-3 control-label">女</label></case>
+                                            <case value="2" break="1"> <label class="col-md-3 control-label">未输入</label></case>
+                                        </switch>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">地址:</label>
+                                    <div class="col-xs-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['school']}</label>
+                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">个性签名:</label>
+                                    <div class="col-xs-6">
+                                         <label class="col-md-3 control-label">{$_SESSION['user']['sign']}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">个人简介:</label>
+                                    <div class="col-md-6">
+                                        <label class="col-md-3 control-label">{$_SESSION['user']['info']}</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="clearfix"> </div>
+                                
+                            </div>
+                        </form>
+                </div>
+			</div>
+		</div>
+    </div>
+	
+	
+	<script>
+	
+		$("#safe").click(function(){
+			$("#top").replaceWith("<h3 class='text-success' id='top'>安全中心</h3>");
+		
+		});
+		$("#safe").click(function(){
+			$("#block").replaceWith("<div class='col-md-10' style='border-left:3px solid #e05b5b;float:left;padding:30px;'id='block'> <form class='form-horizontal' role='form' method='post' action='__APP__/user/actSetQues' enctype='multipart/form-data'><div class='form-group'><label class='col-md-3 control-label'>用户名:</label><div class='col-xs-6'><input class='form-control col-md-6' disabled type='text' placeholder='{$_SESSION['user']['username']}'> </div></div><div class='form-group'><label class='col-md-3 control-label'>输入密码提示问题1:</label><span id='tipq1'></span><div class='col-xs-6'><input name='question1' class='form-control col-md-4' type='text' id='ques1'></div></div><div class='form-group'><label class='col-md-3 control-label'>输入密保问题答案1:</label><span id='tipa1'></span><div class='col-xs-6'><input name='answer1' class='form-control col-md-4' type='text' id='ans1'></div></div><div class='form-group'><label class='col-md-3 control-label'>输入密码提示问题2:</label><span id='tipq2'></span><div class='col-xs-6'><input name='question2' class='form-control col-md-4' type='text' id='ques2'></div></div><div class='form-group'><label class='col-md-3 control-label'>输入密保问题答案2:</label><span id='tipa2'></span><div class='col-xs-6'><input name='answer2' class='form-control col-md-4' type='text' id='ans2'></div></div><div class='form-group'><label class='col-md-3 control-label'>输入密码提示问题3:</label><span id='tipq3'></span><div class='col-xs-6'><input name='question3' class='form-control col-md-4' type='text' id='ques3'></div></div><div class='form-group'><label class='col-md-3 control-label'>输入密保问题答案3:</label><span id='tipa3'></span><div class='col-xs-6'><input name='answer3' class='form-control col-md-4' type='text' id='ans3'></div></div><div class='form-group'><div class='col-md-offset-3 col-md-10'><button type='submit' name='submit' class='btn btn-info' value='value' id='change'>提交</button>&nbsp;<button type='reset' class='btn btn-danger'>重置</button></div><div class='clearfix'></div></div></div></form></div><script>ques1 = '';ques2 = '';ques3 = '';ans1 = '';ans2 = '';ans3 = '';$('#ques1').blur(function(){ques1 = $('#ques1').val();queslength1 = $('#ques1').val();if(queslength1==0){$('#tipq1').html('问题不能为空');$('#tipq1').css('color','red');}else{ques1 = 1;} });$('#ques2').blur(function(){ques2 = $('#ques2').val();queslength2 = $('#ques2').val();if(queslength2==0){$('#tipq2').html('问题不能为空');$('#tipq2').css('color','red');}else{ques2 = 1;}  });$('#ques3').blur(function(){ques3 = $('#ques3').val();queslength3 = $('#ques3').val();if(queslength3==0){$('#tipq3').html('问题不能为空');$('#tipq3').css('color','red');}else{ques3 = 1;}  });$('#ans1').blur(function(){ans1 = $('#ans1').val();anslength1 = $('#ans1').val();if(anslength1==0){$('#tipa1').html('答案不能为空');$('#tipa1').css('color','red');}else{ans1 = 1;}}); $('#ans2').blur(function(){ans2 = $('#ans2').val();anslength2 = $('#ans2').val();if(anslength2==0){$('#tipa2').html('答案不能为空');$('#tipa2').css('color','red');}else{ans2 = 1;}}); $('#ans3').blur(function(){ans3 = $('#ans3').val();anslength3 = $('#ans3').val();if(anslength3==0){$('#tipa3').html('答案不能为空');$('#tipa3').css('color','red');}else{ans3 = 1;}}); $('#change').click(function(){if(ques1&&ques2&&ques3&&ans1&&ans2&&ans3){return true;}else{return false;}});")
+		
+		});
+		
+		$("#changePwd").click(function(){
+			$("#top").replaceWith("<h3 class='text-success' id='top'>更改密码</h3>");
+		
+		});
+		$("#changePwd").click(function(){
+		
+			$("#block").replaceWith("<div class='col-md-10' style='border-left:3px solid #e05b5b;float:left;padding:30px;' id='block'><form class='form-horizontal' role='form' method='post' action='__APP__/user/actChangePwd' enctype='multipart/form-data'><div class='form-group'><div class='col-md-offset-5'></div><br /><div class='form-group'><label class='col-md-3 control-label'>用户名:</label><div class='col-xs-6'><input class='form-control col-md-6' disabled type='text' placeholder='{$_SESSION['user']['username']}'></div></div><div class='form-group'><label class='col-md-3 control-label'>输入原密码:</label><span id='checkFormerPwd'></span><div class='col-xs-6'><input name='formerPwd' class='form-control col-md-4' type='password' id='formerPwd'></div></div><div class='form-group'><label class='col-md-3 control-label'>输入新密码:</label><span id='newPwdTip'></span><div class='col-xs-6'><input name='password' class='form-control col-md-4' type='password' id='newPwd'></div></div><div class='form-group'><label class='col-md-3 control-label'>重输新密码:</label><span id='reNewPwdTip'></span><div class='col-xs-6'><input name='rePwd' class='form-control col-md-4' type='password' id='reNewPwd'></div></div><div class='form-group'><label class='col-md-3 control-label'></label><div class='col-xs-6'><input name='id' class='form-control col-md-6' type='hidden' value = '{$_SESSION['user']['id']}'><span id='checkFormerPwd'></span></div></div><div class='form-group'><div class='col-md-offset-3 col-md-10'><button type='submit' name='submit' class='btn btn-info' value='value' id='changep'>确认修改</button>&nbsp;<button type='reset' class='btn btn-danger'>重置</button></div><div class='clearfix'></div></div></div></form></div><script>checkFormerPwd = '';checkNewPwd = '';newPwd = '';newPwdLength = 0;$('#formerPwd').blur(function(){formerPwd = $('#formerPwd').val();content = $('#checkFormerPwd').html();if(formerPwd){$.post('__APP__/User/ajaxPwd',{'password':formerPwd},function(data){if(data==1){$('#checkFormerPwd').html('密码正确');$('#checkFormerPwd').css('color','green');checkFormerPwd = 1;}else{$('#checkFormerPwd').html('密码错误');$('#checkFormerPwd').css('color','red');}},'json');}else{$('#checkFormerPwd').html('请输入密码');$('#checkFormerPwd').css('color','red');}});$('#newPwd').blur(function(){newPwd = $('#newPwd').val();newPwdLength = $('#newPwd').val().length;if(newPwdLength==0){$('#newPwdTip').html('新密码不能为空'); $('#newPwdTip').css('color','red');}else if((newPwdLength >12)||(newPwdLength <6)){$('#newPwdTip').html('密码位数为六到十二位');$('#newPwdTip').css('color','red');}else{$('#newPwdTip').html('新密码可用');$('#newPwdTip').css('color','green');checkNewPwd = 1;}});$('#reNewPwd').blur(function(){newPwdLength = $('#newPwd').val().length;reNewPwd = $('#reNewPwd').val();reNewPwdLength = $('#reNewPwd').val().length;if((newPwd !='')&&(newPwdLength == reNewPwdLength)){$('#reNewPwdTip').html('两次密码相符');$('#reNewPwdTip').css('color','green');checkNewPwd = 1;}else{if(newPwdLength==0){$('#reNewPwdTip').html('新密码不能为空');$('#reNewPwdTip').css('color','red');}else{   $('#reNewPwdTip').html('两次密码不符');$('#reNewPwdTip').css('color','red');}}});$('#changep').click(function(){if((checkFormerPwd==1)&&(checkNewPwd==1)){return true;}else{return false;}});")
+		
+		});
+		
+		$("#changeInfo").click(function(){
+			$("#top").replaceWith("<h3 class='text-success' id='top'>更改信息</h3>");
+		
+		});
+		$("#changeInfo").click(function(){
+			$("#block").replaceWith("<div class='col-md-10' style='border-left:3px solid #e05b5b;float:left;padding:30px;' id='block'><form class='form-horizontal' role='form' method='post' action='__APP__/user/addInfo' enctype='multipart/form-data'><div class='form-group'><div class='col-md-offset-5'></div><br /><div class='form-group'><label class='col-md-3 control-label'>上传头像:</label><div class='col-xs-6'><input type='file' name='profile'></div></div><div class='form-group'><label class='col-md-3 control-label'>用户名:</label><div class='col-xs-6'><input class='form-control col-md-6' disabled type='text' placeholder='{$_SESSION['user']['username']}'></div></div><div class='form-group'><label class='col-md-3 control-label'>昵称:</label><div class='col-xs-6'><input name='nickname' class='form-control col-md-6' type='text' placeholder='{$_SESSION['user']['nickname']}'></div></div><div class='form-group'><label class='col-md-3 control-label'>邮箱:</label><div class='col-xs-6'><input name='email' class='form-control' type='text' placeholder='{$_SESSION['user']['email']}'></div></div><div class='form-group'><label class='col-md-3 control-label'>手机号:</label><div class='col-xs-6'><input name='tel' class='form-control' type='text' placeholder='{$_SESSION['user']['tel']}'></div></div><div class='form-group'><label class='col-md-3 control-label'>性别:</label><div class='col-xs-6' style='margin-top:5px;'><input type='radio' name='sex' value=0 {$_SESSION['user']['sex']==0 ? 'checked' : ''}/>女<input type='radio' name='sex' value=1 {$_SESSION['user']['sex']==1 ? 'checked' : ''} />男</div></div><div class='form-group'><label class='col-md-3 control-label'>地址:</label><div class='col-xs-6'><input name='school' class='form-control' type='text' placeholder='{$_SESSION['user']['school']}'></div></div><div class='form-group'><label class='col-md-3 control-label'>个性签名:</label><div class='col-xs-6'><input name='sign' class='form-control' type='text' placeholder='{$_SESSION['user']['sign']}'></div></div><div class='form-group'><label class='col-md-3 control-label'>个人简介:</label><div class='col-md-6'><textarea name='info' class='form-control' cols='61' rows='10' style='resize:none'  placeholder='{$_SESSION['user']['info']}'></textarea></div></div><div class='form-group'><label class='col-md-3 control-label'></label><div class='col-xs-6'><input name='userId' class='form-control' type='hidden' value='{$_SESSION['user']['userId']}'></div></div></div><div class='form-group'><div class='col-md-offset-3 col-md-10'><button type='submit' name='submit' class='btn btn-info' value='submit'>提交</button>&nbsp;<button type='reset' class='btn btn-danger'>重置</button></div><div class='clearfix'></div></div></div></form></div>")
+		});
+		
+		$("#info").click(function(){
+			$("#top").replaceWith("<h3 class='text-success' id='top'>个人信息</h3>");
+		
+		});
+		$("#info").click(function(){
+			$("#block").replaceWith("<div class='col-md-10' style='border-left:3px solid #e05b5b;float:left;padding:30px;' id='block'>&nbsp;<form class='form-horizontal' role='form'>&nbsp;<div class='form-group'>&nbsp;<label class='col-md-3 control-label'>头像:</label>&nbsp;<div class='col-xs-6'><img class='img' style='width:200px' src='__PUBLIC__/Home/upload/{$_SESSION['user']['profile']}'>&nbsp;<div>&nbsp;</div>&nbsp;<div class='form-group'><label class='col-md-3 control-label'>用户名:</label>&nbsp;<div class='col-xs-6'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['username']}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='form-group'>&nbsp;<label class='col-md-3 control-label'>昵称:</label>&nbsp;<div class='col-xs-6'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['nickname']}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='form-group'>&nbsp;<label class='col-md-3 control-label'>邮箱:</label>&nbsp;<div class='col-xs-6'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['email']}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='form-group'>&nbsp;<label class='col-md-3 control-label'>手机号:</label>&nbsp;<div class='col-xs-6'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['tel']}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='form-group'>&nbsp;<label class='col-md-3 control-label'>性别:</label>&nbsp;<div class='col-xs-6' style='margin-top:5px;'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['sex']==1 ? '男' : '女'}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='form-group'>&nbsp;<label class='col-md-3 control-label'>地址:</label>&nbsp;<div class='col-xs-6'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['school']}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='form-group'>&nbsp;<label class='col-md-3 control-label'>个性签名:</label>&nbsp;<div class='col-xs-6'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['sign']}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='form-group'><label class='col-md-3 control-label'>个人简介:</label>&nbsp;<div class='col-md-6'>&nbsp;<label class='col-md-3 control-label'>{$_SESSION['user']['info']}</label>&nbsp;</div>&nbsp;</div>&nbsp;<div class='clearfix'>&nbsp;</div>&nbsp;</div>&nbsp;</form>&nbsp;</div>")
+		
+		
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</script>
+</block>

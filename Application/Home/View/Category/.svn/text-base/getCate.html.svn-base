@@ -1,0 +1,124 @@
+ <div class="col-md-3 sidebar"> 
+      <div class="block block-layered-nav"> 
+       <div class="block-title"> 
+        <strong><span>{$typeName}</span></strong> 
+       </div> 
+       <div class="block-content"> 
+        <dl id="narrow-by-list"> 
+	<foreach name="childTypeData" item="childType">
+<div class="type{$childType['id']} div" ptypeId="{$Think.get.ppid}" typeId="{$childType['id']}">	
+         <dt class="odd">
+			<a href="__APP__/List/index/ppid/{$Think.get.ppid}/pid/{$childType['id']}" style="color:#1bccf7">{$childType['typeName']}</a>
+         </dt> 
+      <dd class="odd"> 
+       <ol> 
+		<foreach name="cchildTypeData" item="cchildType">
+			<if condition="$cchildType['parentId'] eq $childType['id']">
+			<li> <a href="#" class="a" typeId="{$cchildType['id']}"><span class="price1">{$cchildType['typeName']}</span> </a> ({$cchildType['count']}) </li> 
+			</if>
+		</foreach>
+       </ol> 
+      </dd> 
+</div>
+    </foreach>
+	</dl> 
+       </div> 
+      </div> 
+      <div class="block block-cart"> 
+       <div class="block-title"> 
+        <strong><span>Carrello</span></strong> 
+       </div> 
+       <div class="block-content"> 
+        <p class="empty">You have no items in your shopping cart.</p> 
+       </div> 
+      </div> 
+      <div class="block block-list block-compare"> 
+       <div class="block-title"> 
+        <strong><span>Compare Products </span></strong> 
+       </div> 
+       <div class="block-content"> 
+        <p class="empty">You have no items to compare.</p> 
+       </div> 
+      </div> 
+     </div>
+ 
+<notempty name="Think.get.pid">
+<!--对左侧子版块进行排序-->	
+<script>
+	
+	$(function(){
+		$("#narrow-by-list").prepend($(".type{$Think.get.pid}"));
+		$(".type{$Think.get.pid}").eq(1).remove();
+	});
+</script> 
+</notempty>   
+<script>
+
+	var divs = $("#narrow-by-list div");
+	for(var i=0;i<divs.length;i++){
+		divs.eq(i).click(function(){
+		
+			//$("#narrow-by-list").prepend($(this));
+			var url = "__APP__/List/getContent";
+			var ppid = $(this).attr("ptypeId");
+			var pid = ppid+'-'+$(this).attr("typeId");
+			
+			
+			$.get(url,{"pid":pid},function(data){
+				var html = '';
+				if(data){
+				for(i in data){
+					html +='<div class="col_1_of_single1 span_1_of_single1"><a href="__APP__/goods/index/goodsId/'+data[i]['goodsId']+'"><img style="width:250px;height:250px" src="__PUBLIC__/Home/'+data[i]['pic']+'" class="img-responsive" alt="" /> <h3>'+data[i]['goodsName']+'</h3> <span class="reducedfrom"><p style="display:inline">原价:'+data[i]['preprice']+'</p></span> <div style="color:red;font-size:20px;">'+data[i]['price']+'￥</div></a></div>';
+
+			}
+			
+			}else{
+				html = '该栏目正在上架中，敬请期待……';
+			}
+			html += '<div class="clearfix"></div>';
+			$(".span_2").html(html);
+			
+			});
+			
+			
+			var title = $(this).children('dt').children('a').html();
+			$(".mens-toolbar .sort-by label").html(title);
+			return false;
+		});
+		
+		
+	}
+	
+	var a = $(".a");
+	for(var j=0;j<a.length;j++){
+		a.eq(j).click(function(){
+			
+			//$("#narrow-by-list").prepend($(this).parents(".div"));
+			var title = $(this).children("span").html();
+			$(".mens-toolbar .sort-by label").html(title);
+  			
+			var id = $(this).attr("typeId");
+			var url = "__APP__/List/getContent";
+			$.get(url,{"id":id},function(data){
+				var html = '';
+				if(data){
+				for(i in data){
+					html += '<div class="col_1_of_single1 span_1_of_single1"><a href="__APP__/goods/index/goodsId/'+data[i]['goodsId']+'"><img style="width:250px;height:250px" src="__PUBLIC__/Home/'+data[i]['pic']+'" class="img-responsive" alt="" /> <h3>'+data[i]['goodsName']+'</h3> <span class="reducedfrom"><p style="display:inline">原价:'+data[i]['preprice']+'</p></span> <div style="color:red;font-size:20px;">'+data[i]['price']+'￥</div></a></div>';
+				}
+				}else{
+					html = '该栏目商品正在上架中，敬请期待……';
+				}
+				html += '<div class="clearfix"></div>';
+				$(".span_2").html(html);
+				
+			});
+			return false;
+		});
+		
+	}
+	
+	//function header(){
+	//	var head = $("#narrow-by-list dt a").eq(0).html();
+	//	$(".mens-toolbar .sort-by label").html(head);
+	//}
+</script>

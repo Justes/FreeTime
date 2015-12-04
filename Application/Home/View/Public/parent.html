@@ -1,0 +1,503 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title><block name="title">{:W('Title/getTitle')}</block></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<block name="meta">
+{:W('Meta/getMeta')}
+</block>
+{:W('Switch/close')}
+<link rel="stylesheet" href="__PUBLIC__/Home/css/alertify.default.css" type="text/css" media="screen" charset="utf-8">
+ <link rel="stylesheet" href="__PUBLIC__/Home/css/alertify.core.css" type="text/css" media="screen" charset="utf-8">
+ <link rel="stylesheet" href="__PUBLIC__/Home/css/alertify.bootstrap.css" type="text/css" media="screen" charset="utf-8">
+ <script src="__PUBLIC__/Home/js/alertify.min.js"></script>
+
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="__PUBLIC__/Home/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Custom Theme files -->
+<link rel="stylesheet" href="__PUBLIC__/Home/css/etalage.css">
+<link href="__PUBLIC__/Home/css/style.css" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="__PUBLIC__/Home/css/jquery.countdown.css" />
+<link rel="stylesheet" href="__PUBLIC__/Home/css/mycss.css" />
+<style>
+	.find{width:326px;padding: 6px 0px 10px 0px;background: #E67879;z-index: 9;display: none;border: 1px solid #999;}
+	.find li{border-bottom:1px dotted #fff; line-height:24px; color:#333; padding-left:6px;}
+	.find li a{text-decoration:none}
+	.find li a:hover{color:#fff;font-size:20px}
+</style>
+<!-- Custom Theme files -->
+<!--webfont-->
+<!--
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.11.1.min.js"></script>
+-->
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.js"></script>
+<!-- dropdown -->
+<script src="__PUBLIC__/Home/js/jquery.easydropdown.js"></script>
+<!-- start menu -->
+<link href="__PUBLIC__/Home/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/megamenu.js"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<script src="__PUBLIC__/Home/js/responsiveslides.min.js"></script>
+<script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: false,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+</script>
+<script src="__PUBLIC__/Home/js/jquery.countdown.js"></script>
+<script src="__PUBLIC__/Home/js/script.js"></script>
+</head>
+<body>
+<block name="header_top">
+<if condition="(isset($_SESSION['user']))and($_SESSION['user']['flag'] eq 1)">
+<div class="header_top" style="padding-top:5px">
+  <div class="container">
+		<!--注册登录-->
+		<div class="col-md-8 col-md-offset-4" style="padding-bottom:5px;">
+		 <div class="cssmenu col-md-offset-3" style="height:40px">
+                 <form class="" role="form" action ="#">
+						  <div class="col-md-3" style="height:40px;line-height:40px;text-align:right">
+                              欢迎您:  
+						  </div>
+						<div class="col-md-3" style="height:40px;line-height:40px;text-align:left">
+                            <img class="img-circle" src="__PUBLIC__/Home/upload/{$_SESSION['user']['profile']}" style="height:40px">{$_SESSION['user']['nickname']}
+						  </div> 
+						  <div class="col-md-2" style="height:40px;line-height:40px;text-align:right">
+                            <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-warning" href="__APP__/order">我的订单</a>
+						  </div>
+						  <div class="col-md-2" style="height:40px;line-height:40px;text-align:right">
+                            <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-info" href="__APP__/user/info">个人中心</a>
+						  </div>
+                           <div class="col-md-2" style="height:40px;line-height:40px;text-align:left">
+                          	<a style="margin:0;color:#fff;font-size:14px;" class="btn btn-danger" href="__APP__/public/quit">退出</a>
+                            </div>
+                        </form>
+                
+				</div>
+		</div>
+  </div>
+</div>
+	<!--分割图片-->
+    <div style="background:URL('__PUBLIC__/Home/images/strip.png');padding:2px;"></div>
+
+<else/>
+<div class="header_top" style="padding-top:5px">
+  <div class="container">
+		<!--注册登录-->
+		<div class="col-md-12 " style="padding-bottom:5px;">
+		 <div class="cssmenu col-md-offset-3">
+					 <form class="" role="form" action ="__APP__/index/index">
+                        
+                        <div class="col-md-8"> 
+                            <div class="col-md-6">                     
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="username" placeholder="用户名">
+                                    </div>
+                                    <div class="col-md-2 " style="height:30px">
+                                        <span id="uspan" style="line-height:30px"></span>
+                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                    <div class="col-md-10">
+                                        <input type="password" class="form-control" id="password" placeholder="密码">
+                                    </div>
+                                    <div class="col-md-2" style="height:30px">
+                                       <span id="pspan"  style="line-height:30px"></span>
+                                    </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-4">
+							  <button type="submit" class="btn btn-info" id="submit">登录</button>
+                              <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-danger" href="__CONTROLLER__/../User/register">注册</a>
+                              <a style="margin:0;color:#fff;font-size:14px;" class="btn btn-warning" href="__APP__/User/retrievePwdAcc">忘记密码?</a>
+						  </div>
+					</form>
+
+				</div>
+		</div>
+  </div>
+</div>
+	<!--分割图片-->
+    <div style="background:URL('__PUBLIC__/Home/images/strip.png');padding:2px;"></div>
+   
+
+</if>
+</block>    
+
+<block name="header_bottom">
+<div class="header_bottom">
+	<div class="container">
+	 <div class="header_bottom-box">
+		<div class="header_bottom_left">
+			<div class="logo">
+				<!--网站logo-->
+				<a href="__CONTROLLER__/../Index/index"><img width="100px" height="70px" id="logo" src="" alt=""/></a>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="header_bottom_right">
+				<!--全站搜索-->
+			<div class="search">
+			  <input type="text" id="soso">
+			  <input type="submit" value="">
+	  		</div>
+			
+			<ul class="bag">
+	  			<a id="bag" href="__APP__/Post/cart"><i class="bag_left"> </i></a>
+				<a href="#"><li class="bag_right"><p>{:W("Cart/total")}￥</p> </li></a>
+	  			<div class="clearfix"> </div>
+				<div id="cart" style="display:none;border:1px solid #ccc;background:#fff;position:absolute;z-index:100;">
+					{:W("Cart/index")}
+				</div>
+	  		</ul>
+			
+		</div>
+		<div class="clearfix"> </div>
+	 </div>
+	
+	<div class="find header_bottom_right"" style="position:absolute;left:632px;margin-top:-20px">
+				<ul style="list-style-type:none; padding:0px;">
+					<li><a  href="aaaa">xxxooo</a></li>
+				</ul>
+		</div>
+  </div>
+</div>
+
+</block>
+{:W("Menu/menu")}
+<block name="content">
+   <div class="content_middle_bottom">
+	  <div class="col-md-4">
+		  <ul class="spinner">
+			<i class="spinner_icon"> </i>
+			<li class="spinner_head"><h3>But I must explain</h3></li>
+			<div class="clearfix"> </div>
+		  </ul>
+		  <div class="timer_box">
+			<div class="thumb"> </div>
+			<div class="timer_grid">
+ 			<ul id="countdown">
+			</ul>
+				<ul class="navigation">
+					<li>
+						<p class="timeRefDays">DAYS</p>
+					</li>
+					<li>
+						<p class="timeRefHours">HOURS</p>
+					</li>
+					<li>
+						<p class="timeRefMinutes">MINUTES</p>
+					</li>
+					<li>
+						<p class="timeRefSeconds">SECONDS</p>
+					</li>
+				</ul>
+          </div>
+          <div class="thumb_desc">
+          	<h3> totam rem aperiam</h3>
+          	<div class="price">
+			   <span class="reducedfrom">$140.00</span>
+			   <span class="actual">$120.00</span>
+			</div>
+		 </div>
+		 <a href="#"><div class="m_3 deal"><div class="link3">Buy this deal</div></div></a>
+		</div>
+		</div>
+		<div class="col-md-8">
+		  <ul class="spinner">
+			<i class="paperclip"> </i>
+			<li class="spinner_head"><h3>From the Blog</h3></li>
+			<div class="clearfix"> </div>
+		  </ul>
+		      <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t4.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t5.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t6.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="a-top">
+				 <div class="left-grid">
+					<img src="__PUBLIC__/Home/images/t7.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="right-grid">
+					<h4><a href="#">Duis autem vel eum iriure dolor in hendrerit</a></h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
+				 </div>
+				 <div class="but">
+				   <a class="arrow" href="#"> </a>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+    <div class="content_bottom">
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="box_icon"> </i>
+			 <li class="spinner_head"><h3>mazim pla</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		  <img src="__PUBLIC__/Home/images/t8.jpg" class="img-responsive" alt=""/>
+    	</div>
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="bubble"> </i>
+			 <li class="spinner_head"><h3>About Us</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p>
+    	</div>
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="mail"> </i>
+			 <li class="spinner_head"><h3>Contact Us</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		 <ul class="social">
+			<li><a href=""> <i class="fb"> </i> </a></li>
+		    <li><a href=""><i class="tw"> </i> </a></li>
+			<li><a href=""><i class="google"> </i> </a></li>
+			<li><a href=""><i class="linkedin"> </i> </a></li>
+			<li><a href=""><i class="skype"> </i> </a></li>
+		</ul>
+    	</div>
+    	<div class="col-md-3 span_1">
+    	  <ul class="spinner">
+			 <i class="mail"> </i>
+			 <li class="spinner_head"><h3>Contact Us</h3></li>
+			 <div class="clearfix"> </div>
+		  </ul>
+		  <p>500 Lorem Ipsum Dolor Sit,</p>
+		  <p>22-56-2-9 Sit Amet, Lorem,</p>
+		  <p>Phone:(00) 222 666 444</p>
+		  <p><a href="mailto:info@demo.com"> info(at)gifty.com</a></p>
+    	</div>
+    	<div class="clearfix"> </div>
+    </div>
+</div>
+</block>
+<div class="footer">
+	<div class="container">
+		<div id="footer">
+		</div>
+		<p class="copy">Copyright &copy; 2015.Company name All rights reserved. </p>
+	</div>
+</div>
+</body>
+<block name="importJs">
+</block>
+<script>
+				$("#soso").keyup(function(){
+					var url = "__APP__/index/soso";
+					var value =$("#soso").val();
+					var html = '';
+					if(value =="" || value == null) return false;
+					$.get(url,{"find":value},function(data){
+						if(data){
+						for(i in data){
+							html += '<li><a href='+data[i]['href']+'>'+data[i]['name']+'</a></li>';
+						}
+						}else{ html = '<li>暂无该商品!!!</li>'}
+						$(".find ul").html(html);
+						$(".find").show();
+					});
+				});
+			
+				$("#soso").blur(function(){$(".find").slideUp(800);})
+			
+
+
+
+
+		flag ='';
+        flagp ='';
+        sign = '';
+		psign = '';
+        //找到输入的用户名；
+		//alert($("#username").val());
+        //找到输入的密码： 
+		//alert(password);
+        $("#username").blur(function(){
+		//alert(2);
+			name = $("#username").val();
+			//alert(name);
+            $.post("__APP__/Public/parent",{"username":name},function(date){
+                
+				if(date == 1 ){
+				
+                    flag="√";   
+					 //用户名后面的span标签; 
+					 $("#uspan").html(flag);
+					 sign = 0;
+                }else{
+                    flag="×";
+					$("#uspan").html(flag);
+                    sign = 1;
+            }
+            },"json"); 
+        });
+
+           $("#password").blur(function(){
+				if(sign == 0){
+				password = $("#password").val();
+				   $.post("__APP__/Public/parent",{"username":name,"password":password},function(data){
+						if(data == 2){
+							flagp = "√";
+							$("#pspan").html(flagp);
+							psign = 0;
+						}else if(data == 3){
+							flagp = "×"; 
+							$("#pspan").html(flagp);
+							psign = 1;
+							}		 
+					},"json");
+				}
+			});	
+    //密码后面的span标签;
+    $("#pspan").html(flagp);
+    $("#submit").click(function(){
+		if((sign==0)&&(psign == 0)&&(name)&&(password)){
+            return true; 
+        }else{
+            return false; 
+    } 
+    });
+//	加载友情链接
+
+	$(function() {
+		var urls = "{:U("Public/links",'','')}";
+		var footer = '';
+		$.ajax({
+				type:"GET",
+				url:urls,
+				data:"links=links",
+				dataType:"json",
+				success:function(data) {
+					for(var i = 0; i < data.length; i++) {
+						if(data[i]['logo']) {
+							footer += '<a href="'+data[i]['addr']+'"><img style="width:50px;height:50px;"src="__PUBLIC__/Admin/' + data[i]['logo'] +'"></a><a style="color:#886C58;text-decoration:none;"href="' + data[i]['addr'] +'"target="_blank">'+ data[i]['linkName'] +'</a> <span> </span>';
+						} else {
+							footer += '<a style="color:#886C58;text-decoration:none;"href="' + data[i]['addr'] +'"target="_blank">'+ data[i]['linkName'] +'</a> <span> </span>';
+						}
+					}
+					$("#footer").html(footer);
+				}
+			}); 
+		});
+			
+// 加载网站配置
+	$(function() {
+			var urls = "{:U("Public/man")}";
+			$.ajax({
+				type:"GET",
+				url:urls,
+				dataType:"json",
+				success:function(data) {
+					$("p[class=copy]").text(data[0].copyright+' IPC备案号:'+data[0].record);
+					$("#logo").attr("src","__PUBLIC__/Admin/"+data[0].logo);
+				}
+			});
+		});
+
+			
+//点击加入购物车
+
+	$(".ajaxbtn .addToCart").live("click",function(){
+		<empty name="Think.session.user.flag">
+			alertify.alert("亲，请先登录！");
+		<else />
+	   var goodsId = $(this).attr('goodsId');
+	   $.get("__APP__/Index/addToCart/goodsId/",{"goodsId":goodsId},function(data){
+			if(data){
+				//alertify.alert("添加成功！");
+				alertify.set({ labels: {
+    ok     : "查看购物车",
+    cancel : "继续购物"
+} });
+				alertify.confirm("添加成功！", function (e) {      if (e) {        window.location.href="__APP__/Post/cart";      } else {              }    }); 
+			}else{
+			alertify.set({ labels: {
+    ok     : "继续购物",
+} });
+				alertify.alert("亲，商品已经在购物车里了！");
+			}
+	   });
+	   </empty>
+	   return false;
+		
+	});
+	
+	<notempty name="Think.session.user.flag">
+	$(function(){ 
+    setInterval(function(){ 
+			var url = "__APP__/Index/ajaxInfo"
+			alertify.set({ delay: 10000 });
+            $.get(url,{"hw":"1"},function(data){
+				if(data != '0'){
+				
+				alertify.error("买家："+data[0]['buyer']+"对您的商品："+data[0]['goodsName']+"做出了评价！");
+				
+				}
+			});
+           },5000); 
+}) 
+</notempty>
+
+// 悬浮时显示购物车
+	$("#bag").hover(function() {
+				$("#cart").css("display","block");
+				$("#cart").hover(function() {
+					$("#cart").css("display","block");
+				},function() {
+					$("#cart").css("display","none");
+				});
+			},function() {
+				$("#cart").css("display","none");
+			});
+</script>   
+
+</html>		

@@ -1,0 +1,136 @@
+<?php
+
+namespace Home\Controller;
+use Think\Controller;
+
+class GoodsController extends Controller{
+    
+    public function index(){
+
+        if(!isset($_GET['goodsId'])){
+            $this -> error('商品不存在！');
+            exit;
+        }
+
+        $goodsDetail = M('goods');
+        $goodsPic = M('goodspic');
+        $orderModel = M('order');
+
+        $goodsDetailData = $goodsDetail -> where($_GET) -> select();
+        if(!$goodsDetailData){
+            $this -> error('商品不存在!');
+        }
+        $goodsPicData = $goodsPic -> where($_GET) -> select();
+        $array = array();
+        foreach ($goodsPicData as $k=>$v) {
+            $array[] = $v['goodsPic'];
+        }
+
+        //猜你喜欢，随机本站任意4个商品
+        $map['goodsId'] = array(array('neq',$_GET['goodsId']));
+        $favoriteGoods = $goodsDetail ->field('goodsId,goodsName') -> where($map) -> order('rand()') -> limit(4) -> select();
+
+         //查询猜你喜欢商品的图片
+        foreach($favoriteGoods as $k=>$v){
+            $favoritePic = $goodsPic -> where("goodsId={$v['goodsId']}") ->select();
+            $favoriteGoods[$k]['pic'] = $favoritePic[0]['goodsPic'];
+        }
+
+        if(isset($_SESSION['user']['flag'])){
+            $order = $orderModel -> where("goodsId = {$_GET['goodsId']} and userId = {$_SESSION['user']['id']} and status='1'") -> select();
+            if($order){
+                $this -> assign('order',1);
+            }else{
+                $this -> assign('order',0);
+            }
+        }
+
+
+        $this -> assign('favoriteGoods',$favoriteGoods);
+        $this -> assign('goodsDetail',$goodsDetailData);
+        $this -> assign('goodsPic',$array);
+        $this -> display();
+    }
+
+    /*
+     *  相关商品,同一个typeId的商品，排除了当前商品
+     */
+    public function relatedGoods(){
+        $relGoodsTable = M('goods');
+        $relGoodsPicTable = M('goodspic');
+
+        $map['status'] = '0';
+        $map['typeId'] = $_GET['typeId'];
+        $map['goodsId'] = array(array('neq',$_GET['goodsId']));
+
+        $relGoods = $relGoodsTable -> where($map) -> order('rand()') -> limit(4) -> select();
+
+        foreach($relGoods as $k=>$v){
+            $relPics = $relGoodsPicTable -> where("goodsId={$v['goodsId']}") -> select(); 
+            $relGoods[$k]['pic'] = $relPics[0]['goodsPic'];
+        }
+        $this -> ajaxReturn($relGoods);
+    }
+
+
+    /**
+     *  商品评价
+     */
+    public function message(){
+
+        $comModel = M('comment');
+        $userModel = M('user');
+
+        
+        if(isset($_POST['content'])){
+        $goodsId = $_POST['goodsId'];
+        $_POST['buyerId'] = $_SESSION['user']['id'];
+        $_POST['buyer'] = $_SESSION['user']['username'];
+        $_POST['profile'] = $_SESSION['user']['profile'];
+        $_POST['status'] = '1';
+        $_POST['commentTime'] = date('Y-m-d H:i:s',time());
+            if($comModel -> create()){
+                if($comModel -> add()){
+                }
+            }
+        }else{
+            $goodsId = $_GET['goodsId'];
+        }
+    $datas = $comModel -> where("goodsId={$goodsId}") -> select();
+    foreach ($datas as $k=>$v) {
+        $user = $userModel -> where("id={$v['buyerId']}") -> select();
+        $datas[$k]['buyerName'] = $user[0]['username'];
+        $datas[$k]['buyerProfile'] = $user[0]['profile'];
+    }
+
+    $this -> ajaxReturn($datas);
+
+    }
+
+    /**
+     *  商品留言
+     *
+     */
+    public function question(){
+
+        $quesModel = M('consult');
+        if($_POST['question']){
+            $goodsId = $_POST['goodsId'];
+            $_POST['userId'] = $_SESSION['user']['id'];
+            $_POST['time'] = date('Y-m-d H:i:s',time());
+            $_POST['username'] = $_SESSION['user']['username'];
+            $_POST['profile'] = $_SESSION['user']['profile'];
+            $_POST['status'] = '1';
+            if($quesModel -> create($_POST)){
+                if($quesModel -> add()){
+                
+                }
+            }
+        
+        }else{
+            $goodsId = $_GET['goodsId'];
+        }
+        $quseData = $quesModel -> where("goodsId={$goodsId}") -> select();
+        $this -> ajaxReturn($quseData);
+    }
+}

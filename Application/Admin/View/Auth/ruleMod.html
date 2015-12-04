@@ -1,0 +1,118 @@
+<extend name="Public:parent"/>
+<block name="content">
+	<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon edit"></i><span class="break"></span>编辑规则</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal" method="post" action="__APP__/Auth/ruleMod">
+							<fieldset>
+							 <div class="control-group success">
+								<label class="control-label" for="inputSuccess">规则名称</label>
+								<div class="controls">
+                                    <input type="text" id="title" name="title" placeholder="{$data.0.title}"/>
+                                    <span id="checktitle"></span>
+								  <!--<span class="help-inline">Woohoo!</span>-->
+								</div>
+							  </div>
+							   <div class="control-group success">
+								<label class="control-label" for="inputSuccess">规则标识</label>
+								<div class="controls">
+								  <input type="text" id="name" name="name" placeholder="{$data.0.name}"/>
+                                  <span id="checkname"></span>
+								  <!--<span class="help-inline">Woohoo!</span>-->
+								</div>
+								</div>
+								
+								 <div class="control-group success">
+								<label class="control-label" for="inputSuccess"></label>
+								<div class="controls">
+								  <input type="hidden" name="id" value="{$data.0.id}"/>
+                                  <span id="checkname"></span>
+								  <!--<span class="help-inline">Woohoo!</span>-->
+								</div>
+								</div>
+								
+							  <!--<div class="control-group">
+								<label class="control-label" for="selectError">网站开关</label>
+								<div class="controls">
+								  <select id="switch" data-rel="chosen">
+									<option>开启</option>
+									<option>关闭</option>
+								  </select>
+								</div>
+							  </div>
+							  <div class="control-group">
+								<label class="control-label">更改Logo</label>
+								<div class="controls">
+								  <input type="file">
+								</div>
+                            </div>-->
+							
+							
+							  <div class="form-actions">
+								<input type="submit" class="btn btn-primary" name="sub" id="sub" value="修改">
+                                <a href="__APP__/Auth/rule" class="btn btn-default btn-xs" >返回</a>
+							  </div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+	</div><!--/span-->
+<script src="__PUBLIC__/Admin/js/jquery.js"></script>
+<script>
+     flag='';
+     fflag='';
+	 
+	 
+        $("#title").blur(function(){
+			
+			if($("#title").val() == ''){
+				$("#checktitle").html("不可为空");     
+				$("#checktitle").css("color","red");
+				
+			}else{
+				
+				flag = 1;
+				$("#checktitle").html("");     
+			} 
+		});
+	 
+        $("#name").blur(function(){
+			if($("#name").val() == ''){
+				$("#checkname").html("不可为空"); 
+				$("#checkname").css("color","red");
+			}else{
+				fflag = 1;
+				$("#checkname").html("");
+			} 
+		});	
+		
+		
+		
+		
+    $("#sub").click(function(){
+
+        
+		if((flag==1)&&(fflag==1)){
+           return ture; 
+        }else{
+            return false; 
+      
+		}
+		
+    }); 
+
+    
+</script>	
+			
+			
+			
+</block>
+

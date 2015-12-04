@@ -1,0 +1,95 @@
+<extend name="Public:parent"/>
+<block name="content">
+	<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon edit"></i><span class="break"></span>添加账号</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal" method="post" action="__APP__/User/add">
+							<fieldset>
+							 <div class="control-group success">
+								<label class="control-label" for="inputSuccess">账号名称</label>
+								<div class="controls">
+                                    <input type="text" id="username" name="username"/>
+                                    <span id="checkname"></span>
+								  <!--<span class="help-inline">Woohoo!</span>-->
+								</div>
+							  </div>
+							   <div class="control-group success">
+								<label class="control-label" for="inputSuccess">账号密码</label>
+								<div class="controls">
+								  <input type="password" id="password" name="password"/>
+                                  <span id="checkpass"></span>
+								  <!--<span class="help-inline">Woohoo!</span>-->
+								</div>
+							  </div>
+							  <div class="control-group success">
+								<label class="control-label" for="inputSuccess">重复密码</label>
+								<div class="controls">
+								  <input type="password" id="repassword" name="repassword"/>
+                                  <span id="pass"></span>
+								  <!--<span class="help-inline">Woohoo!</span>-->
+								</div>
+							  </div>
+							  <!--<div class="control-group">
+								<label class="control-label" for="selectError">网站开关</label>
+								<div class="controls">
+								  <select id="switch" data-rel="chosen">
+									<option>开启</option>
+									<option>关闭</option>
+								  </select>
+								</div>
+							  </div>
+							  <div class="control-group">
+								<label class="control-label">更改Logo</label>
+								<div class="controls">
+								  <input type="file">
+								</div>
+                            </div>-->
+							
+							
+							  <div class="form-actions">
+								<input type="submit" class="btn btn-primary" name="sub" id="sub" value="添加">
+                                <a href="__APP__/User" class="btn btn-default btn-xs" >返回</a>
+							  </div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+	</div><!--/span-->
+<script src="__PUBLIC__/Admin/js/jquery.js"></script>
+<script>
+    var flag;
+    var sign = $("#pass").html();
+        $("#repassword").blur(function(){
+        if(($("#password").val() == $("#repassword").val()) && ($("#password").val() != "")){
+            $("#pass").html("密码正确");
+            flag = 1;
+            }else if($("#password").val() == ""){
+            $("#pass").html("密码不能为空");
+            }else{
+            $("#pass").html("两次密码不符"); 
+            flag = 0;
+    } 
+    });
+    $("#sub").click(function(){
+        if(flag){
+           return ture; 
+        }else{
+            return false; 
+        }
+    }); 
+
+    
+</script>	
+			
+			
+			
+</block>
+

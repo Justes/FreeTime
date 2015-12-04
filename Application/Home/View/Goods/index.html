@@ -1,0 +1,304 @@
+<extend name="Public:parent" />
+<block name="content">
+<div class="men">
+	<div class="container">
+	  <div class="single_top">
+	       <div class="col-md-9 single_right">
+	   	       <div class="grid images_3_of_2">
+						<ul id="etalage">
+							<foreach name="goodsPic" item="pic">
+								<li>
+										<img  style="width:220px;height:220px" class="etalage_thumb_image" src="__PUBLIC__/Home/{$pic}" class="img-responsive" />
+										<img style="width:220px;height:220px" class="etalage_source_image" src="__PUBLIC__/Home/{$pic}" class="img-responsive" title="" />
+									
+								</li>
+							</foreach>
+				
+						</ul>
+						 <div class="clearfix"></div>		
+				  </div> 
+				  <div class="desc1 span_3_of_2" id="goodsType" goodsTypeId={$goodsDetail[0]['typeId']}>
+                      <h1>{$goodsDetail[0]['goodsName']}</h1>
+                      <p class="m_5">现价：￥{$goodsDetail[0]['price']} <span class="reducedfrom">原价：￥{$goodsDetail[0]['preprice']}</span></p>
+				    <div class="btn_form">
+						<form class="ajaxbtn">
+							<a class="btn btn-warning addToCart" goodsid={$goodsDetail[0]['goodsId']} goodsname="{$goodsDetail[0]['goodsName']}" sellerid="{$goodsDetail[0]['sellerId']}" href="#">加入购物车</a>
+							<a class="btn btn-danger" id="addToOrder" href="#">立即购买</a>
+						</form>
+					 </div>
+					 <div style="background-color:#fcf8e3;border-left:5px solid #FAEBCC;border-radius:0 7px 7px 0;padding:10px">
+						<p>新旧：{$goodsDetail[0]['old']}</p>
+						<p>颜色：{$goodsDetail[0]['color']}</p>
+						<p>品牌：{$goodsDetail[0]['brand']}</p>
+						<p>尺寸/型号：{$goodsDetail[0]['model']}</p>
+						<p>浏览次数：{$goodsDetail[0]['focus']}
+						<p>发布时间：{$goodsDetail[0]['postTime']}</p>
+						<p>卖家：{$goodsDetail[0]['username']}</p>
+						<p>联系方式：{$goodsDetail[0]['tel']}</p>
+					 </div>
+				  </div>
+				  <div class="clearfix"></div>	
+       </div>
+       <div class="col-md-3">
+      	<!-- FlexSlider -->
+               <section class="slider_flex">
+				  <div class="flexslider">
+					<ul class="slides">
+						<foreach name="favoriteGoods" item="favGoods">
+							<li><a href="__APP__/goods/index/goodsId/{$favGoods['goodsId']}"><img style="width:253px;height:253px" src="__PUBLIC__/Home/{$favGoods['pic']}" class="img-responsive" alt="{$favGoods['goodsName']}"/></a></li>
+						</foreach>
+			
+				    </ul>
+				  </div>
+	          </section>
+		<!-- FlexSlider -->
+      </div>
+      <div class="clearfix"> </div>
+</div>
+       
+<ul class="nav nav-tabs" id="myTab" style="margin-top:30px">
+  <li><a href="#home" data-toggle="tab">商品详情</a></li>
+  <li><a href="#profile" data-toggle="tab">留言</a></li>
+  <li><a href="#settings" data-toggle="tab">评价</a></li>
+</ul>
+
+<!-- Tab panes -->
+
+
+<div class="tab-content" style="padding-bottom:30px">
+  <div style="padding:10px;" class="tab-pane fade in active" id="home">
+	<div class="alert alert-warning">{$goodsDetail[0]['description']}</div>
+	
+	<foreach name="goodsPic" item="pic">
+		
+				<div style="padding-left:300px" ><img style="width:400px;height:400px" class="img-rounded" src="__PUBLIC__/Home/{$pic}" /></div>
+		
+	</foreach>
+		
+	
+  </div>
+  <div style="padding:10px" class="tab-pane fade " id="profile">
+	
+	<div  class="tabbox alert" style="display: block; ">
+		<ul id="ques">
+		</ul>
+	</div>
+	<textarea class="form-control" rows="8" id="questioncontent" style="resize:none;overflow-y:hidden"></textarea>
+	<button class="btn btn-info" id="question" style="float:right;margin-top:20px;margin-right:5px;clear:both">留言</button>
+  </div>
+  <div style="padding:10px" class="tab-pane fade" id="settings">
+	
+	<style>
+		.tabbtn{height:30px; border-bottom:1px solid pink; margin-bottom:20px; background:#efefef; padding:10px 0px;}	
+				.tabbtn span{width:160px; float:left; height:30px; cursor:pointer; border:1px solid #fff; margin-left:15px; border-radius:20px; text-align:center; line-height:30px;}
+				.tabbtn span.active{background:#fff;}
+				.tabbox{background:#fcf8e3;}
+				.tabbox ul li{background:#fcf8e3;list-style:none; padding:10px 0px 10px 20px; border-bottom:1px solid #fff;}
+				.tabbox ul li div img{width:50px; height:50px; float:left; border:1px solid #fff; overflow:hidden; border-radius:25px; margin-right:16px;}
+				.tabbox ul li div span,.tabbox ul li div i{height:50px; line-height:50px; float:left; margin-right:10px; color:#666;}
+				.tabbox ul li .contents{float:left; padding:6px 10px; border-radius:10px; border:1px solid #999; margin-left:60px;}
+				.tabbox ul li .contents p{line-height:26px; color:#333; font-size:14px;}
+				.clearfix{zoom:1}
+				.clear:after{content:'';display:block;clear:both}
+	</style>
+	
+	
+	
+	<div  class="tabbox alert" style="display: block; ">
+		<ul id="comm">
+		</ul>
+	</div>
+	<notempty name="order">
+	<textarea class="form-control" rows="8" id="msgcontent" style="resize:none;overflow-y:hidden"></textarea>
+	<button class="btn btn-info" id="message" style="float:right;margin-top:20px;margin-right:5px;clear:both">评价</button>
+	</notempty>
+	</div>
+</div>   
+
+<script>
+  $(function () {
+    $('#myTab a:first').tab('show')
+  })
+  
+  //点击直接购买!
+	 var toOrder = $("#addToOrder");
+	 toOrder.click(function(){
+		<notempty name="Think.session.user.flag">
+		var url = "__APP__/Order/toOrder";
+		var goodsId = $(".addToCart").attr("goodsId");
+		$.get(url,{"goodsId":goodsId},function(data){
+			if(data){
+				window.location.href="__APP__/Order/index";
+			}else{ alertify.alert("直接购买失败！") }
+		});
+		return false;
+		<else />
+			alertify.alert("亲，请先登录！");
+		</notempty>
+	 });	
+		
+		
+	 var url = "__APP__/goods/message";
+	 var msgcontent = $("#msgcontent").val();
+	 var sellerId = $(".addToCart").attr("sellerid");
+	 var goodsId = $(".addToCart").attr("goodsid");
+	 var goodsName = $(".addToCart").attr("goodsname");
+	 var comm = $("#comm");
+	 
+	 var url1 = "__APP__/goods/question";
+	 
+	 var ques = $("#ques");
+	 
+	 //Ajax请求留言内容
+	 $("a[href='#profile']").click(function(){
+			$.get(url1,{"goodsId":goodsId},function(data){
+				var html='';
+				if(data){
+				for(i in data){
+					html += '<li class="clearfix"><div class="clearfix"><img src="__PUBLIC__/Home/upload/'+data[i]['profile']+'"><span>'+data[i]['username']+'</span><i style="font-size:13px;">'+data[i]['time']+'</i></div><div class="contents"><p>'+data[i]['question']+'</p></div></li>';
+				}
+			}else{ html = '<div class="alert alert-warning" style="height:100px">亲，快来抢沙发吧！！！</div>';}
+			ques.html(html);
+			});
+			
+			
+	 });
+	 
+	 //ajax请求并写入留言
+	 $("#question").click(function(data){
+			<notempty name="Think.session.user.flag">
+			var quescontent = $("#questioncontent").val();
+			if(quescontent==''){
+				alertify.alert("留言不能为空！");
+				return false;
+			}
+			var html = '';
+			$.post(url1,{"question":quescontent,"goodsId":goodsId,"goodsName":goodsName,"sellerId":sellerId},function(data){
+			for(i in data){
+					html += '<li class="clearfix"><div class="clearfix"><img src="__PUBLIC__/Home/upload/'+data[i]['profile']+'"><span>'+data[i]['username']+'</span><i style="font-size:13px;">'+data[i]['time']+'</i></div><div class="contents"><p>'+data[i]['question']+'</p></div></li>';
+				}
+			$("#questioncontent").val('');
+			ques.html(html);
+			
+	});
+			<else/>
+			alertify.alert("亲，请先登录！");
+			</notempty>
+	 });
+	 
+	 //Ajax请求该商品的所有评价
+  $("a[href='#settings']").click(function(){
+		var goodsId = $(".addToCart").attr("goodsid");
+		var html = '';
+		$.get(url,{"goodsId":goodsId},function(data){
+		if(!data){
+			html = '<div style="height:100px">亲，该商品暂无评论……</div>';
+			//html = '<li class="clearfix"><div class="clearfix"><img src="/project/Public/Upload/2015-12-02/565f094090fa5.png"><span>huangwei</span><i style="font-size:13px;">2015-12-02 23:09:01</i></div><div class="contents"><p>很不错哦</p></div></li>';
+			}else{
+			for(i in data){
+				html += '<li class="clearfix"><div class="clearfix"><img src="__PUBLIC__/Home/upload/'+data[i]['profile']+'"><span>'+data[i]['buyer']+'</span><i style="font-size:13px;">'+data[i]['commentTime']+'</i></div><div class="contents"><p>'+data[i]['content']+'</p></div></li>';
+			}
+		}
+			comm.html(html);
+		});
+  });
+  
+  //提交评价，只有购买者才可以提交
+  $("#message").click(function(){	 
+	 var html = '';
+	 var msgcontent = $("#msgcontent").val();
+	 if(msgcontent==''){
+				alertify.alert("评价不能为空！");
+				return false;
+			}
+	 $.post(url,{"content":msgcontent,"sellerId":sellerId,"goodsId":goodsId,'goodsName':goodsName},function(data){
+			for(i in data){
+				html += '<li class="clearfix"><div class="clearfix"><img src="__PUBLIC__/Home/upload/'+data[i]['profile']+'"><span>'+data[i]['buyer']+'</span><i style="font-size:13px;">'+data[i]['commentTime']+'</i></div><div class="contents"><p>'+data[i]['content']+'</p></div></li>';
+			}
+			$("#msgcontent").val('');
+			comm.html(html);
+	 });
+  });
+</script>
+     <h3 class="head_single" style="margin-top:30px" id="related">相关商品</h3>
+     <div class="span_3" id="htm">		
+		<div class="clearfix"></div>
+	  </div>
+      </div>
+</div> 
+
+<script src="__PUBLIC__/Home/js/jquery.etalage.min.js"></script>   
+<script>
+			jQuery(document).ready(function($){
+
+				$('#etalage').etalage({
+					thumb_image_width: 300,
+					thumb_image_height: 220,
+					source_image_width: 900,
+					source_image_height: 660,
+					show_hint: true,
+					click_callback: function(image_anchor, instance_id){
+						alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+					}
+				});
+
+			});
+		</script>
+		
+<link href="__PUBLIC__/Home/css/flexslider.css" rel='stylesheet' type='text/css' />
+<script defer src="__PUBLIC__/Home/js/jquery.flexslider.js"></script>
+<script defer src="__PUBLIC__/Home/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	//$(function(){
+	//  SyntaxHighlighter.all();
+	//});
+	$(window).load(function(){
+	  $('.flexslider').flexslider({
+		animation: "slide",
+		start: function(slider){
+		  $('body').removeClass('loading');
+		}
+	  });
+	});
+	
+	var typeId = $("#goodsType").attr("goodsTypeId");
+	
+	var num = 0;
+	function check(){
+		
+		var related = $("#related").offset().top;
+		var html='';
+		var wd_height=$(window).height();
+		var croll=$(window).scrollTop();
+		var goodsId = $(".addToCart").attr("goodsid");
+		if(related < wd_height + croll){
+		 
+			var url = "__APP__/Goods/relatedGoods";
+			$('#htm').empty();
+			
+			$.get(url,{"typeId":typeId,"goodsId":goodsId},function(data){
+			      
+					for(i in data){
+					
+						html += '<div class="col-sm-3 grid_1"><a href="__APP__/Goods/Index/goodsId/'+data[i]['goodsId']+'"><img style="width:220px;height:220px" src="__PUBLIC__/Home/'+data[i]['pic']+'" class="img-responsive" alt=""/><h3>'+data[i]['goodsName']+'</h3><p>Duis autem vel eum iriure</p><h4>￥'+data[i]['price']+'</h4></a></div> ';
+					}
+					num=1;
+					$('#htm').html(html);
+					
+			
+			},'json');
+			
+					
+			
+			
+		}
+	}
+	$(window).scroll(function(){
+	   
+	   if(num){return false;}else{
+	   check();
+	   }
+		
+	});
+  </script>
+</block>

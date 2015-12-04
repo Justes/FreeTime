@@ -1,0 +1,98 @@
+<extend name="Public:parent" />
+<block name="title">
+	找回密码
+</block>
+<block name="content">
+	<div class="men">
+		<div class="container">
+			<div class="col-md-11 register">
+                <form class="form-horizontal" role="form" method="post" action="__APP__/user/actRetrievePwd" enctype="multipart/form-data"> 
+					 <div class="form-group">
+						 <div class="col-md-offset-5">
+							 <h3 class="text-success">找回密码-重新设定密码</h3>
+						 </div>
+						 <br />
+						 
+						 <div class="form-group">
+                             <label class="col-md-3 control-label">输入新密码:</label>
+                             <span id="newPwdTip"></span>
+							<div class="col-xs-6">
+                                <input name="password" class="form-control col-md-4" type="password" id="newPwd">
+                                
+							</div>
+						 </div>
+						 <div class="form-group">
+                             <label class="col-md-3 control-label">重输新密码:</label>
+                              <span id="reNewPwdTip"></span>
+							<div class="col-xs-6">
+                                <input name="rePwd" class="form-control col-md-4" type="password" id="reNewPwd">
+                               
+							</div>
+                        </div>
+                       
+						 <div class="form-group">
+						 <div class="col-md-offset-3 col-md-10">
+                             <button type="submit" name="submit" class="btn btn-info" value="value" id="change">确认修改</button>
+							 <button type="reset" class="btn btn-danger">重置</button>
+						 </div>
+						 <div class="clearfix"> </div>
+						 </div>
+					  </div>
+				   </form>
+			   </div>
+		 </div>
+	</div>
+<script>
+    checkFormerPwd = '';
+    checkNewPwd = '';
+    newPwd = '';
+    newPwdLength = 0;
+    $("#newPwd").blur(function(){
+        newPwd = $("#newPwd").val(); 
+         // alert(newPwd);
+        newPwdLength = $("#newPwd").val().length;
+        if(newPwdLength==0){
+            $("#newPwdTip").html("新密码不能为空"); 
+            $("#newPwdTip").css("color","red");
+        }else if((newPwdLength >12)||(newPwdLength <6)){
+            $("#newPwdTip").html("密码位数为六到十二位");
+            $("#newPwdTip").css("color","red");
+        }else{
+            $("#newPwdTip").html("新密码可用"); 
+            $("#newPwdTip").css("color","green");
+             checkNewPwd = 1;
+        }
+        
+    });
+     $("#reNewPwd").blur(function(){
+        //newPwd = $("#newPwd").val(); 
+        //alert(newPwdLength);
+        newPwdLength = $("#newPwd").val().length;
+        reNewPwd = $("#reNewPwd").val();
+        reNewPwdLength = $("#reNewPwd").val().length;
+        
+        if((newPwd !='')&&(newPwdLength == reNewPwdLength)){
+            $("#reNewPwdTip").html("两次密码相符");
+            $("#reNewPwdTip").css("color","green");
+            checkNewPwd = 1;
+            }else{
+                if(newPwdLength==0){
+                    $("#reNewPwdTip").html("新密码不能为空");
+                    $("#reNewPwdTip").css("color","red");
+            
+                }else{   
+                    $("#reNewPwdTip").html("两次密码不符"); 
+                    $("#reNewPwdTip").css("color","red");
+                }
+        }
+     
+    });
+    $("#change").click(function(){
+        if(checkNewPwd){
+            return true; 
+        }else{
+            return false; 
+        } 
+    });
+</script>
+</block>

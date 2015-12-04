@@ -1,0 +1,51 @@
+<div class="menu">
+	<div class="container">
+		<div class="menu_box">
+	     <ul class="megamenu skyblue" id="nav_header">
+			<li class="active grid"><a class="color2" href="__APP__/index">首页</a></li>
+		
+		
+     <foreach name="list" item="v1">   
+		<!--遍历出主导航-->
+      <if condition="$v1['parentId'] eq 0">
+        <li>
+        <a class="color2" href="__APP__/List/index/ppid/{$v1['id']}">{$v1['typeName']}</a>
+			
+				<!--遍历二级分类-->
+	
+					<div class="megapanel">
+						<div class="row">
+						<foreach name="list1" item="v2">
+							<if condition="$v2['parentId'] eq $v1['id']">
+								<div class="col1">
+									<div class="h_nav">
+                                        <h4><a href="__APP__/List/index/ppid/{$v1['id']}/pid/{$v2['id']}">{$v2['typeName']}</a></h4>
+										<ul>
+												<!--遍历出三级分类-->
+											<foreach name="list2" item="v3">
+												<if condition="$v3['parentId'] eq $v2['id']">
+                                                <li><a href="__APP__/List/index/ppid/{$v1['id']}/pid/{$v2['id']}/id/{$v3['id']}">{$v3['typeName']}</a></li>
+												</if>
+											</foreach>
+
+										</ul>	
+									</div>						
+								</div>
+							</if>
+						</foreach>
+						</div>
+					</div>
+		</li>
+	  </if>
+			
+    </foreach>
+			
+			
+			<li><a class="color5 post1" href="__CONTROLLER__/../Post/post" <empty name="Think.session.user.flag">onclick="alertify.alert('请先登录！');return false;"</empty>>发布闲置</a></li>
+			<li><a class="color9 post1" href="__CONTROLLER__/../Post/sell"<empty name="Think.session.user.flag"> onclick="alertify.alert('请先登录！');return false;"</empty>>我的闲置</a></li> 
+			<li><a class="color10 post1" href="__CONTROLLER__/../Post/cart" <empty name="Think.session.user.flag">onclick="alertify.alert('请先登录！');return false;"</empty>>购物车</a></li> 
+			<div class="clearfix"> </div>
+		 </ul>
+	  </div>
+	</div>
+</div>
